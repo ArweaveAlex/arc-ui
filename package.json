@@ -12,7 +12,9 @@
 		"test:verbose": "npm test -- --verbose",
 		"test:coverage": "CI=true npm test -- --env=jsdom --coverage",
 		"build": "NODE_ENV=production webpack",
-		"deploy": "npm run build && node src/workers/deploy.mjs",
+		"deploy": "npm run build && node perma-deploy.mjs ./dist",
+		"fund": "bundlr fund 500000000000 -h https://node2.bundlr.network -w ${PATH_TO_WALLET} -c arweave",
+		"balance": "bundlr balance ${WALLET} -h https://node2.bundlr.network -c arweave",
 		"prepare": "husky install",
 		"check-packages": "node src/workers/check-packages.mjs"
 	},
@@ -29,7 +31,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
 		"@babel/preset-typescript": "^7.21.0",
-		"@bundlr-network/client": "0.11.0",
+		"@bundlr-network/client": "0.10.5",
 		"@svgr/webpack": "^6.5.1",
 		"@types/react": "^18.0.28",
 		"@types/react-dom": "^18.0.11",

@@ -7,19 +7,22 @@ async function deployRenderer(folder) {
 	const jwk = JSON.parse(fs.readFileSync(process.env.PATH_TO_WALLET).toString());
 	const bundlr = new Bundlr.default('http://node2.bundlr.network', 'arweave', jwk);
 
-	const tags = [
-		{ name: 'Implements', value: 'ANS-110' },
-		{ name: 'Type', value: 'renderer' },
-		{ name: 'Title', value: 'The Microscope Renderer' },
-		{ name: 'Description', value: 'ANS-110' },
-		{ name: 'Topic:Renderer', value: 'Renderer' },
-		{ name: 'Render-For', value: '<add value here if the renderer is for a specific ANS-110 type>' },
-	];
+	// TODO: tag the renderer when it's ready
+
+	// const tags = [
+	// 	{ name: 'Implements', value: 'ANS-110' },
+	// 	{ name: 'Type', value: 'renderer' },
+	// 	{ name: 'Title', value: 'The Microscope Renderer' },
+	// 	{ name: 'Description', value: 'ANS-110' },
+	// 	{ name: 'Topic:Renderer', value: 'Renderer' },
+	// 	{ name: 'Render-For', value: '<add value here if the renderer is for a specific ANS-110 type>' },
+	// ];
+
 	const uploaded = await bundlr.uploadFolder(folder, {
 		indexFile: 'index.html', // optional index file (file the user will load when accessing the manifest)
 		batchSize: 50, //number of items to upload at once
 		keepDeleted: false, // whether to keep now deleted items from previous uploads
-		manifestTags: [{ tags }],
+		// manifestTags: [{ tags }],
 	});
 
 	console.log(`Files uploaded. Manifest Id ${uploaded.id}`);
