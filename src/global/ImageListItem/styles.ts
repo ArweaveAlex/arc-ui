@@ -3,65 +3,49 @@ import styled from 'styled-components';
 import { fadeIn2, open } from 'helpers/animations';
 import { getImageShadow, STYLING } from 'helpers/styling';
 
-export const ICWrapper = styled.div<{ column: boolean }>`
-	height: calc(100% - 15px);
-	height: 550px;
+export const ICWrapper = styled.div`
 	width: 100%;
-	display: flex;
-	flex-direction: ${(props) => (props.column ? 'column' : 'row')};
-	max-height: ${(props) => (props.column ? 'none' : '550px')};
 	justify-content: space-between;
-	padding: 25px;
+	padding: 20px;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	animation: ${open} ${fadeIn2};
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
-		flex-direction: column;
-		max-height: none;
-	}
 `;
 
-export const C1 = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? 'auto' : '100%')};
-	width: ${(props) => (props.column ? '100%' : '50%')};
+export const C1 = styled.div`
+	height: auto;
+	width: 100%;
 	a {
 		&:hover {
 			text-decoration: none;
 		}
 	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
-		width: 100%;
-	}
 `;
 
-export const C1Content = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? 'auto' : '100%')};
-	width: ${(props) => (props.column ? '100%' : 'calc(100% - 10px)')};
+export const C1Content = styled.div`
+	height: auto;
+	width: 100%;
 	text-align: left;
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
-		width: 100%;
-	}
 `;
 
-export const Title = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? 'auto' : '70px')};
+export const Title = styled.div`
+	height: auto;
 	width: 100%;
-	overflow: hidden;
+	max-width: 800px;
+	margin: 0 0 20px 0;
 	a,
 	p {
-		line-height: 1.5;
-		color: ${(props) => props.theme.colors.font.primary.active.base};
-		font-weight: ${(props) => props.theme.typography.weight.medium};
-		font-size: 22px;
+		line-height: 1.5 !important;
+		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+		font-family: ${(props) => props.theme.typography.family.alt1} !important;
+		font-size: clamp(28px,3.25vw,38px) !important;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		word-break: break-word;
@@ -71,34 +55,21 @@ export const Title = styled.div<{ column: boolean }>`
 			text-decoration: underline;
 		}
 	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: 125px;
-		background: ${(props) => props.theme.colors.container.primary.background};
-		border: 1px solid ${(props) => props.theme.colors.border.primary};
-		border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-		padding: 17.5px;
-		p,
-		a {
-			font-size: clamp(16px, 3vw, 22px);
-		}
-	}
 `;
 
-export const ImageWrapper = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? '300px' : 'calc(100% - 100px)')};
+export const ImageWrapper = styled.div`
+	height: 550px;
 	width: 100%;
-	margin: ${(props) => (props.column ? '20px 0 40px 0' : '0')};
 	background: ${(props) => props.theme.colors.container.alt5.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	box-shadow: ${(props) => getImageShadow(props.theme)};
 	cursor: zoom-in;
-	@media (max-width: ${STYLING.cutoffs.initial}) {
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: 300px;
-		margin: 20px 0 40px 0;
 	}
 `;
 
-export const Image = styled.img<{ loaded: boolean; column: boolean }>`
+export const Image = styled.img<{ loaded: boolean}>`
 	height: 100%;
 	width: 100%;
 	margin: 0;
@@ -106,20 +77,14 @@ export const Image = styled.img<{ loaded: boolean; column: boolean }>`
 	display: ${(props) => (props.loaded ? 'block' : 'none')} !important;
 `;
 
-export const C2 = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? 'auto' : '100%')};
-	width: ${(props) => (props.column ? '100%' : '47.5%')};
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+export const C2 = styled.div`
+	height: auto;
+	width: 100%;
+	margin: 30px 0 0 0;
 	overflow: auto;
 	scrollbar-width: none;
 	::-webkit-scrollbar {
 		width: 0px;
-	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
-		width: 100%;
 	}
 `;
 
@@ -139,9 +104,8 @@ export const C2Header = styled.div`
 	}
 `;
 
-export const C2Body = styled.div<{ column: boolean }>`
-	height: ${(props) => (props.column ? 'auto' : 'calc(100% - 40px)')};
-	max-height: 435px;
+export const C2Body = styled.div`
+	height: auto;
 	width: 100%;
 	> * {
 		&:not(:last-child) {
@@ -150,10 +114,6 @@ export const C2Body = styled.div<{ column: boolean }>`
 		&:last-child {
 			margin: 0;
 		}
-	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		height: auto;
-		max-height: none;
 	}
 `;
 

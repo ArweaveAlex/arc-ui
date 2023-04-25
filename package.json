@@ -6,7 +6,7 @@
 	"author": "",
 	"license": "ISC",
 	"scripts": {
-		"start": "NODE_ENV=development webpack serve --port 3000",
+		"start": "NODE_ENV=development webpack serve --port 3001",
 		"format": "eslint --fix . && npx prettier --write .",
 		"test": "npm test",
 		"test:verbose": "npm test -- --verbose",
@@ -17,7 +17,8 @@
 		"check-packages": "node src/workers/check-packages.mjs"
 	},
 	"dependencies": {
-		"arcframework": "^1.1.26",
+		"arcframework": "^1.1.30",
+		"epubjs": "^0.3.93",
 		"html-react-parser": "^3.0.4",
 		"process": "^0.11.10",
 		"react": "^18.2.0",

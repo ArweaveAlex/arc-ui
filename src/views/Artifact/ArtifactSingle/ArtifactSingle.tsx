@@ -10,7 +10,7 @@ export default function ArtifactSingle(props: IProps) {
 	function getData() {
 		if (!props.data) {
 			return (
-				<div className={'wrapper-600 border-container'}>
+				<div className={'wrapper-600 border-wrapper'}>
 					<Loader />
 				</div>
 			);

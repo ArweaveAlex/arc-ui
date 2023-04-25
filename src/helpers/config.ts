@@ -72,5 +72,5 @@ export const ARTIFACT_TYPES = {
 };
 
 export const DOM = {
-	modal: 'modal',
+	modal: 'modal'
 };

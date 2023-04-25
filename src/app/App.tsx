@@ -5,12 +5,12 @@ export function App() {
 	const query = parseQuery(window.location.search);
 
 	return query.tx ? (
-		<>
+		<div className={'view-wrapper max-cutoff'}>
 			<div id={DOM.modal} />
 			<Artifact id={query.tx} />
-		</>
+		</div>
 	) : (
-		<div className={'wrapper-600 border-container'}>
+		<div className={'wrapper-600 border-wrapper'}>
 			<p>{LANGUAGE.invalidQuery}</p>
 		</div>
 	);

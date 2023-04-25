@@ -6,6 +6,7 @@ import { ARTIFACT_TYPES } from 'helpers/config';
 import { ArtifactDetailSingle } from '../ArtifactDetailSingle';
 import { IProps } from '../types';
 
+import { ArtifactEbookSingle } from './ArtifactEbookSingle';
 import { ArtifactImageSingle } from './ArtifactImageSingle';
 import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
 import { ArtifactNostrSingle } from './ArtifactNostrSingle';
@@ -40,12 +41,18 @@ export default function ArtifactViewSingle(props: IProps) {
 					return <ArtifactRedditSingle data={props.data} />;
 				case ArtifactEnum.Webpage:
 					return <ArtifactWebpageSingle data={props.data} />;
+				case ArtifactEnum.Webpage:
+					return <ArtifactWebpageSingle data={props.data} />;
+				case ArtifactEnum.Webpage:
+					return <ArtifactWebpageSingle data={props.data} />;
+				case ArtifactEnum.Ebook:
+					return <ArtifactEbookSingle data={props.data} />;
 				default:
 					return <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
 			}
 		} else {
 			return (
-				<div className={'wrapper-600 border-container'}>
+				<div className={'wrapper-600 border-wrapper'}>
 					<Loader />
 				</div>
 			);
