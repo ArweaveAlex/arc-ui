@@ -32,7 +32,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
     background: ${(props) => props.theme.colors.view.background};
-    padding: 20px; // TODO: remove
   }
 
   * {
@@ -65,11 +64,6 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
   }
-  
-
-  a {
-    text-decoration: none;
-  }
 
   h1 {
     font-size: ${(props) => props.theme.typography.size.h1};
@@ -99,8 +93,8 @@ export const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.colors.font.primary.base};
   }
 
-  b {
-    font-weight: ${(props) => props.theme.typography.weight.medium};
+  b, strong {
+    font-weight: ${(props) => props.theme.typography.weight.bold};
   }
   
   p, span, button, a, b, li, input, textarea {
@@ -110,6 +104,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.typography.family.primary};
     font-size: ${(props) => props.theme.typography.size.small};
     color: ${(props) => props.theme.colors.font.primary.alt1};
+  }
+
+  a:hover p, a:focus p {
+      text-decoration: none !important;
   }
 
   button {
@@ -199,7 +197,6 @@ export const GlobalStyle = createGlobalStyle`
     border: 1px solid ${(props) => props.theme.colors.border.primary};
     border-radius: ${STYLING.dimensions.borderRadiusWrapper};
     box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
-    padding: 20px;
   }
 
   .wrapper-600 {
