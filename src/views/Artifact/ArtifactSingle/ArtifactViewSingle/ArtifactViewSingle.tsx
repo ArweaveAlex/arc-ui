@@ -12,6 +12,7 @@ import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
 import { ArtifactNostrSingle } from './ArtifactNostrSingle';
 import { ArtifactRedditSingle } from './ArtifactRedditSingle';
 import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
+import { ArtifactDocumentSingle } from './ArtifactDocumentSingle';
 import * as S from './styles';
 
 export default function ArtifactViewSingle(props: IProps) {
@@ -47,6 +48,8 @@ export default function ArtifactViewSingle(props: IProps) {
 					return <ArtifactWebpageSingle data={props.data} />;
 				case ArtifactEnum.Ebook:
 					return <ArtifactEbookSingle data={props.data} />;
+				case ArtifactEnum.Document:
+					return <ArtifactDocumentSingle data={props.data} />;
 				default:
 					return <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
 			}

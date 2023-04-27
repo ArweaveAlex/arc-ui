@@ -7,6 +7,7 @@
 	"license": "ISC",
 	"scripts": {
 		"start": "NODE_ENV=development webpack serve --port 3001",
+		"start:win": "webpack serve --port 3001",
 		"format": "eslint --fix . && npx prettier --write .",
 		"test": "npm test",
 		"test:verbose": "npm test -- --verbose",
@@ -22,6 +23,9 @@
 		"arcframework": "^1.1.30",
 		"epubjs": "^0.3.93",
 		"html-react-parser": "^3.0.4",
+		"jszip": "^3.10.1",
+		"pdfmake": "^0.2.7",
+		"pptxgenjs": "^3.12.0",
 		"process": "^0.11.10",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
