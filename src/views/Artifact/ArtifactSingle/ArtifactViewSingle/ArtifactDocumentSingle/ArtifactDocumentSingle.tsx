@@ -2,8 +2,6 @@ import { Loader } from 'components/atoms/Loader';
 
 import { IProps } from '../../types';
 
-import * as S from './styles';
-
 import ArtifactTxtSingle from './ArtifactTxtSingle/ArtifactTxtSingle';
 import ArtifactCsvSingle from './ArtifactCsvSingle/ArtifactCsvSingle';
 import ArtifactPdfSingle from './ArtifactPdfSingle/ArtifactPdfSingle';
@@ -27,18 +25,22 @@ export default function ArtifactDocumentSingle(props: IProps) {
 	
 
 	function getDetailData() {
-		console.log(props.data)
 		if (!props.data) {
 			return <Loader />;
 		} else {
-			return (
-				<div>
-					{/* <ArtifactCsvSingle data={props.data}></ArtifactCsvSingle> */}
-					{/* <ArtifactPdfSingle data={props.data}></ArtifactPdfSingle> */}
-					<ArtifactTxtSingle data={props.data}></ArtifactTxtSingle>
-					{/* <ArtifactDetailSingle data={props.data} type={getArtifactType()} /> */}
-				</div>
-			);
+			let r = <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
+			switch(props.data.fileType){
+				case('txt'):
+					r = <ArtifactTxtSingle data={props.data}></ArtifactTxtSingle>;
+					break;
+				case('pdf'):
+					r = <ArtifactPdfSingle data={props.data}></ArtifactPdfSingle>;
+					break;
+				case('csv'):
+					r = <ArtifactCsvSingle data={props.data}></ArtifactCsvSingle>;
+					break;
+			}
+			return r;
 		}
 	}
 

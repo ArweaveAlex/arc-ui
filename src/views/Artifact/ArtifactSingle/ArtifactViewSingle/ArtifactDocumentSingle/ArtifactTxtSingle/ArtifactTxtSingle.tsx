@@ -28,7 +28,6 @@ export default function ArtifactTxtSingle(props: IProps) {
 	
 
 	function getDetailData() {
-		console.log(props.data)
 		if (!props.data) {
 			return <Loader />;
 		} else {

@@ -72,7 +72,6 @@ export default function ImageListItem(props: IProps) {
 	}
 
 	function getImage() {
-		console.log(imageUrl)
 		if (!imageZoomed) {
 			return (
 				<S.ImageWrapper onClick={() => handleImageZoom()}>

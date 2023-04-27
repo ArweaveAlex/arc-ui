@@ -25,7 +25,6 @@ export default function ArtifactPdfSingle(props: IProps) {
 	}, [jsonData]);
 
 	function getDetailData() {
-		console.log(props.data)
 		if (!props.data || !pdfUrl) {
 			return <Loader />;
 		} else {

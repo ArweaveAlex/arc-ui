@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
     @media(max-width: ${STYLING.dimensions.listWidth}) {
         width: auto;
     }
+    padding: 20px;
 `;
 
 export const DetailWrapper = styled.div`

@@ -53,7 +53,6 @@ export default function ArtifactCsvSingle(props: IProps) {
 					</thead>
 					<S.Tbody>
 						{data.map((row: string, key: number) => {
-							console.log(key)
 							return (
 								<S.Tr key={getRandomInt()}>
 									{row.split(',').map((cell: string) => (
