@@ -166,10 +166,6 @@ export default function ArtifactEbookSingle(props: IProps) {
 		);
 	}
 
-	function addToBookmarks() {
-		console.log(renditionState);
-	}
-
 	return (
 		<S.Wrapper className={'border-wrapper'} ref={wrapperRef} fullScreen={fullScreen}>
 			{book ? (
