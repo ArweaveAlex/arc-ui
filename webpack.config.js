@@ -164,7 +164,9 @@ module.exports = {
 			components: path.resolve(__dirname, 'src/components/'),
 			global: path.resolve(__dirname, 'src/global/'),
 			helpers: path.resolve(__dirname, 'src/helpers/'),
+			hooks: path.resolve(__dirname, 'src/hooks/'),
 			views: path.resolve(__dirname, 'src/views/'),
+			wrappers: path.resolve(__dirname, 'src/wrappers/'),
 		},
 	},
 	output: {

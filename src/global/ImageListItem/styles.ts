@@ -45,7 +45,7 @@ export const Title = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
 		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
 		font-family: ${(props) => props.theme.typography.family.alt1} !important;
-		font-size: clamp(28px,3.25vw,38px) !important;
+		font-size: clamp(22px, 2.25vw, 28px) !important;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		word-break: break-word;
