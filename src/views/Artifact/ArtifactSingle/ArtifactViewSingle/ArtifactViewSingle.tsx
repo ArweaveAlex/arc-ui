@@ -6,13 +6,15 @@ import { ARTIFACT_TYPES } from 'helpers/config';
 import { ArtifactDetailSingle } from '../ArtifactDetailSingle';
 import { IProps } from '../types';
 
+import { ArtifactAudioSingle } from './ArtifactAudioSingle';
+import { ArtifactDocumentSingle } from './ArtifactDocumentSingle';
 import { ArtifactEbookSingle } from './ArtifactEbookSingle';
 import { ArtifactImageSingle } from './ArtifactImageSingle';
 import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
 import { ArtifactNostrSingle } from './ArtifactNostrSingle';
 import { ArtifactRedditSingle } from './ArtifactRedditSingle';
+import { ArtifactVideoSingle } from './ArtifactVideoSingle';
 import { ArtifactWebpageSingle } from './ArtifactWebpageSingle';
-import { ArtifactDocumentSingle } from './ArtifactDocumentSingle';
 import * as S from './styles';
 
 export default function ArtifactViewSingle(props: IProps) {
@@ -50,12 +52,16 @@ export default function ArtifactViewSingle(props: IProps) {
 					return <ArtifactEbookSingle data={props.data} />;
 				case ArtifactEnum.Document:
 					return <ArtifactDocumentSingle data={props.data} />;
+				case ArtifactEnum.Audio:
+					return <ArtifactAudioSingle data={props.data} />;
+				case ArtifactEnum.Video:
+					return <ArtifactVideoSingle data={props.data} />;
 				default:
 					return <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
 			}
 		} else {
 			return (
-				<div className={'wrapper-600 border-wrapper'}>
+				<div className={'wrapper-600'}>
 					<Loader />
 				</div>
 			);

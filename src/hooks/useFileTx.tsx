@@ -3,9 +3,9 @@ import React from 'react';
 import { getTxEndpoint } from 'arcframework';
 
 export function useFileTx(rawData: string | null) {
-    const [jsonData, setJsonData] = React.useState<any>(null);
-    const [fileUrl, setFileUrl] = React.useState<string | null>(null);
-    const [metadata, setMetadata] = React.useState<any>(null);
+	const [jsonData, setJsonData] = React.useState<any>(null);
+	const [fileUrl, setFileUrl] = React.useState<string | null>(null);
+	const [metadata, setMetadata] = React.useState<any>(null);
 
 	React.useEffect(() => {
 		if (rawData) {
@@ -13,7 +13,7 @@ export function useFileTx(rawData: string | null) {
 		}
 	}, [rawData]);
 
-    React.useEffect(() => {
+	React.useEffect(() => {
 		(async function () {
 			if (jsonData) {
 				const fileResponse = await fetch(getTxEndpoint(jsonData.fileTxId));
@@ -22,7 +22,7 @@ export function useFileTx(rawData: string | null) {
 		})();
 	}, [jsonData]);
 
-    React.useEffect(() => {
+	React.useEffect(() => {
 		(async function () {
 			if (jsonData && jsonData.metadataTxId && jsonData.metadataTxId.length > 0) {
 				const metadataResponse = await fetch(getTxEndpoint(jsonData.metadataTxId));
@@ -36,7 +36,7 @@ export function useFileTx(rawData: string | null) {
 	}, [jsonData]);
 
 	return {
-        fileUrl: fileUrl,
-        metadata: metadata
-    };
+		fileUrl: fileUrl,
+		metadata: metadata,
+	};
 }

@@ -207,16 +207,16 @@ export default function ArtifactEbookSingle(props: IProps) {
 								}}
 							/>
 							<p>{bookTitle ? bookTitle : `-`}</p>
-								<IconButton
-									type={'alt3'}
-									src={ASSETS.fullScreen}
-									handlePress={() => toggleFullScreen()}
-									tooltip={LANGUAGE.enterFullScreen}
-									dimensions={{
-										wrapper: 22.5,
-										icon: 12.5,
-									}}
-								/>
+							<IconButton
+								type={'alt3'}
+								src={ASSETS.fullScreen}
+								handlePress={() => toggleFullScreen()}
+								tooltip={LANGUAGE.enterFullScreen}
+								dimensions={{
+									wrapper: 22.5,
+									icon: 12.5,
+								}}
+							/>
 						</S.TitleAction>
 						<S.Viewer ref={bookRef}>
 							{!bookStart && (

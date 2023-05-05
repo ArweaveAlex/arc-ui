@@ -6,11 +6,6 @@ import { getImageShadow, STYLING } from 'helpers/styling';
 export const ICWrapper = styled.div`
 	width: 100%;
 	justify-content: space-between;
-	padding: 20px;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	box-shadow: 0 0 2.5px ${(props) => props.theme.colors.shadow.primary};
 	animation: ${open} ${fadeIn2};
 `;
 
@@ -39,8 +34,7 @@ export const Title = styled.div`
 	width: 100%;
 	max-width: 800px;
 	margin: 0 0 20px 0;
-	a,
-	p {
+	a {
 		line-height: 1.5 !important;
 		color: ${(props) => props.theme.colors.font.primary.active.base} !important;
 		font-weight: ${(props) => props.theme.typography.weight.bold} !important;
@@ -57,6 +51,25 @@ export const Title = styled.div`
 	}
 `;
 
+export const Name = styled.p`
+	line-height: 1.5 !important;
+	color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+	font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+	font-family: ${(props) => props.theme.typography.family.alt1} !important;
+	font-size: clamp(22px, 2.25vw, 28px) !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+`;
+
+
+export const ID = styled.p`
+	font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+	color: ${(props) => props.theme.colors.font.primary.alt6} !important;
+	margin: 10px 0 0 0 !important;
+`;
+
 export const ImageWrapper = styled.div`
 	height: 550px;
 	width: 100%;
@@ -69,12 +82,13 @@ export const ImageWrapper = styled.div`
 	}
 `;
 
-export const Image = styled.img<{ loaded: boolean}>`
+export const Image = styled.img<{ loaded: boolean }>`
 	height: 100%;
 	width: 100%;
 	margin: 0;
 	object-fit: contain;
 	display: ${(props) => (props.loaded ? 'block' : 'none')} !important;
+	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 `;
 
 export const C2 = styled.div`

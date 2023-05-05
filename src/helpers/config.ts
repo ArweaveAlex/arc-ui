@@ -17,6 +17,8 @@ import favoriteSVG from 'assets/favorite.svg';
 import fullScreenSVG from 'assets/full-screen.svg';
 import impressionsSVG from 'assets/impressions.svg';
 import logoAlt2SVG from 'assets/logo-alt-2.svg';
+import mediaPauseSVG from 'assets/media-pause.svg';
+import mediaPlaySVG from 'assets/media-play.svg';
 import menuSVG from 'assets/menu.svg';
 import repliesSVG from 'assets/replies.svg';
 import retweetSVG from 'assets/retweet.svg';
@@ -44,6 +46,8 @@ export const ASSETS = {
 	fullScreen: fullScreenSVG,
 	impressions: impressionsSVG,
 	logoAlt2: logoAlt2SVG,
+	mediaPause: mediaPauseSVG,
+	mediaPlay: mediaPlaySVG,
 	menu: menuSVG,
 	replies: repliesSVG,
 	retweet: retweetSVG,
@@ -78,5 +82,5 @@ export const ARTIFACT_TYPES = {
 };
 
 export const DOM = {
-	modal: 'modal'
+	modal: 'modal',
 };

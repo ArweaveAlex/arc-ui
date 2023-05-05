@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.dimensions.listWidth}) {
+    @media(max-width: ${STYLING.dimensions.rendererWrapper}) {
         width: auto;
     }
     padding: 20px;
@@ -24,10 +24,10 @@ export const DetailWrapper = styled.div`
 	position: relative;
 	animation: ${open} ${fadeIn2};
 	z-index: 3;
-    overflowWrap: break-word;
+	overflowwrap: break-word;
 `;
 
 export const Pre = styled.pre`
-    white-space: pre-wrap;
-    line-height: 1.35;
+	white-space: pre-wrap;
+	line-height: 1.35;
 `;

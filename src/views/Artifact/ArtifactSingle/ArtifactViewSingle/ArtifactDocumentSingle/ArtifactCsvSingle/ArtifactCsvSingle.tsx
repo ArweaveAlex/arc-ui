@@ -1,10 +1,12 @@
+import React from 'react';
+
+import { getTxEndpoint } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 
 import { IProps } from '../../../types';
 
 import * as S from './styles';
-import React from 'react';
-import { getTxEndpoint } from 'arcframework';
 
 export default function ArtifactCsvSingle(props: IProps) {
 	const [csvData, setCsvData] = React.useState(null);
@@ -25,7 +27,6 @@ export default function ArtifactCsvSingle(props: IProps) {
 			}
 		})();
 	}, [jsonData]);
-	
 
 	function getRandomInt() {
 		let min = Math.ceil(1);
@@ -37,18 +38,16 @@ export default function ArtifactCsvSingle(props: IProps) {
 		if (!props.data || !csvData) {
 			return <Loader />;
 		} else {
-			const rows = csvData.split('\n'); 
-			const headers = rows[0].split(','); 
-			const data = rows.slice(1); 
+			const rows = csvData.split('\n');
+			const headers = rows[0].split(',');
+			const data = rows.slice(1);
 			return (
 				<S.Table>
 					<thead>
 						<tr>
-						{headers.map((header: string) => (
-							<S.Th key={getRandomInt()}>
-								{header}
-							</S.Th>
-						))}
+							{headers.map((header: string) => (
+								<S.Th key={getRandomInt()}>{header}</S.Th>
+							))}
 						</tr>
 					</thead>
 					<S.Tbody>
@@ -59,7 +58,7 @@ export default function ArtifactCsvSingle(props: IProps) {
 										<S.Td key={getRandomInt()}>{cell}</S.Td>
 									))}
 								</S.Tr>
-							)
+							);
 						})}
 					</S.Tbody>
 				</S.Table>
@@ -73,4 +72,3 @@ export default function ArtifactCsvSingle(props: IProps) {
 		</S.Wrapper>
 	);
 }
-

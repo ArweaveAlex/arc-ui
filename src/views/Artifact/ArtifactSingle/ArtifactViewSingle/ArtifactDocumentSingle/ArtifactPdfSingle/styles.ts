@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.dimensions.listWidth}) {
+    @media(max-width: ${STYLING.dimensions.rendererWrapper}) {
         width: auto;
     }
 `;
@@ -23,5 +23,5 @@ export const DetailWrapper = styled.div`
 	position: relative;
 	animation: ${open} ${fadeIn2};
 	z-index: 3;
-    overflow:hidden;
+	overflow: hidden;
 `;

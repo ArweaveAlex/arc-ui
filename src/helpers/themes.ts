@@ -106,10 +106,10 @@ export const defaultTheme: DefaultTheme = {
 			},
 			neutral: {
 				background: DEFAULT.neutral2,
-				hover: DEFAULT.neutral5
+				hover: DEFAULT.neutral5,
 			},
 			overlay: {
-				background: DEFAULT.semiTransparentAlt1
+				background: DEFAULT.semiTransparentAlt1,
 			},
 			disabled: DEFAULT.neutral7,
 		},
@@ -144,7 +144,7 @@ export const defaultTheme: DefaultTheme = {
 			},
 			alt6: {
 				background: DEFAULT.neutral2,
-			}
+			},
 		},
 		font: {
 			primary: {
@@ -186,8 +186,8 @@ export const defaultTheme: DefaultTheme = {
 			alt1: {
 				background: DEFAULT.neutral2,
 				border: DEFAULT.neutral2,
-				hover: DEFAULT.neutral5
-			}
+				hover: DEFAULT.neutral5,
+			},
 		},
 		icon: {
 			primary: {
@@ -245,7 +245,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		overlay: {
 			primary: DEFAULT.overlay1,
-			alt1: DEFAULT.overlay2
+			alt1: DEFAULT.overlay2,
 		},
 		shadow: {
 			primary: DEFAULT.neutral5,

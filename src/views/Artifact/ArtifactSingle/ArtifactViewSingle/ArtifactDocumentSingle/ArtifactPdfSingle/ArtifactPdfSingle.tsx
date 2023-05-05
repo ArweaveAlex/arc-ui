@@ -1,10 +1,12 @@
+import React from 'react';
+
+import { getTxEndpoint } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 
 import { IProps } from '../../../types';
 
 import * as S from './styles';
-import React from 'react';
-import { getTxEndpoint } from 'arcframework';
 
 export default function ArtifactPdfSingle(props: IProps) {
 	const [pdfUrl, setPdfUrl] = React.useState(null);
@@ -15,7 +17,7 @@ export default function ArtifactPdfSingle(props: IProps) {
 			setJsonData(JSON.parse(props.data.rawData));
 		}
 	}, [props.data]);
-	
+
 	React.useEffect(() => {
 		(async function () {
 			if (jsonData) {
@@ -31,7 +33,9 @@ export default function ArtifactPdfSingle(props: IProps) {
 			let altText = props.data.artifactName ? props.data.artifactName : props.data.artifactId;
 			return (
 				<object data={pdfUrl} type="application/pdf" width="100%" height="100%">
-					<p><a href={pdfUrl}>{altText}</a></p>
+					<p>
+						<a href={pdfUrl}>{altText}</a>
+					</p>
 				</object>
 			);
 		}

@@ -1,10 +1,12 @@
+import React from 'react';
+
+import { getTxEndpoint } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 
 import { IProps } from '../../../types';
 
 import * as S from './styles';
-import React from 'react';
-import { getTxEndpoint } from 'arcframework';
 
 export default function ArtifactTxtSingle(props: IProps) {
 	const [txtData, setTxtData] = React.useState(null);
@@ -25,17 +27,12 @@ export default function ArtifactTxtSingle(props: IProps) {
 			}
 		})();
 	}, [jsonData]);
-	
 
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader />;
 		} else {
-			return (
-
-					<S.Pre>{txtData}</S.Pre>
-
-			);
+			return <S.Pre>{txtData}</S.Pre>;
 		}
 	}
 
@@ -47,4 +44,3 @@ export default function ArtifactTxtSingle(props: IProps) {
 		</div>
 	);
 }
-

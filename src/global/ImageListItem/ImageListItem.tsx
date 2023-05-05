@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FALLBACK_IMAGE, getTxEndpoint } from 'arcframework';
+import { FALLBACK_IMAGE, formatAddress, getTxEndpoint } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
@@ -9,7 +9,6 @@ import { LANGUAGE } from 'helpers/language';
 import * as S from './styles';
 import { IProps } from './types';
 
-// TODO: hook to set file data / metadata state
 export default function ImageListItem(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
 
@@ -57,7 +56,12 @@ export default function ImageListItem(props: IProps) {
 
 	function getTitle() {
 		if (props.data) {
-			return <p>{props.data.artifactName}</p>;
+			return (
+				<>
+					<S.Name>{props.data.artifactName}</S.Name>
+					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+				</>
+			);
 		} else {
 			return (
 				<S.TP>
@@ -76,7 +80,7 @@ export default function ImageListItem(props: IProps) {
 			return (
 				<S.ImageWrapper onClick={() => handleImageZoom()}>
 					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
-					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded}/>
+					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} />
 				</S.ImageWrapper>
 			);
 		} else {
@@ -111,9 +115,8 @@ export default function ImageListItem(props: IProps) {
 						</S.InfoData>
 					</S.ContentLine>
 				);
-			})
+			});
 			return getBodyWrapper(body);
-
 		} else {
 			if (metadata && Object.keys(metadata).length <= 0) {
 				return null;
@@ -124,7 +127,7 @@ export default function ImageListItem(props: IProps) {
 							<Loader placeholder />
 						</S.BP>
 					);
-				})
+				});
 				return getBodyWrapper(body);
 			}
 		}

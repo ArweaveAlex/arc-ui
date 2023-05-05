@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
     position: relative;
     display flex;
     justify-content: space-between;
-    @media(max-width: ${STYLING.dimensions.listWidth}) {
+    @media(max-width: ${STYLING.dimensions.rendererWrapper}) {
         width: auto;
     }
 `;
@@ -25,32 +25,27 @@ export const DetailWrapper = styled.div`
 	z-index: 3;
 `;
 
-
 export const Table = styled.table`
-    border-collapse: collapse;
-    width: 100%;
-    @media (max-width: ${STYLING.cutoffs.initial}) {
+	border-collapse: collapse;
+	width: 100%;
+	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: ${STYLING.cutoffs.initial};
 	}
 `;
 
 export const Th = styled.th`
-    font-weight: bold;
-    border: 1px solid ${(props) => props.theme.colors.border.primary};
-    padding: 8px;
-    text-align: left;
+	font-weight: bold;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	padding: 8px;
+	text-align: left;
 `;
 
 export const Td = styled.td`
-    border: 1px solid ${(props) => props.theme.colors.border.primary};
-    padding: 8px;
-    text-align: left;
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	padding: 8px;
+	text-align: left;
 `;
 
-export const Tr = styled.tr`
-    
-`;
+export const Tr = styled.tr``;
 
-export const Tbody = styled.tbody`
-    
-`;
+export const Tbody = styled.tbody``;

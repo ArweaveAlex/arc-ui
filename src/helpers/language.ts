@@ -169,6 +169,8 @@ export const LANGUAGE = {
 		create: `Create`,
 		pools: `Pools`,
 	},
+	pause: `Pause`,
+	play: `Play`,
 	pool: {
 		subheader1: `Pool`,
 		artifactsCreated: `Artifacts Created`,
@@ -221,7 +223,7 @@ export const LANGUAGE = {
 		list: [
 			{
 				header: `Creating Pools`,
-				description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic. <a target="_blank" href="https://alex-operator-guide.arweave.dev/">For more information on how to create a pool…</a>`,
+				description: `An operator creates a pool. A pool operator can be a historical institution, or anyone that is interested in preserving a topic. For more information on how to create a pool, please visit our documentation`,
 			},
 			{
 				header: `Contributing to Pools`,
@@ -252,6 +254,7 @@ export const LANGUAGE = {
 	viewOnArweave: `View on Arweave`,
 	viewOnPermafacts: `View on Permafacts`,
 	viewPool: `View Pool`,
+	volume: `Volume`,
 	walletNotConnected: `Connect a wallet to continue`,
 	willBeReceiving: `You will be receiving`,
 };

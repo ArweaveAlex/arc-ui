@@ -26,7 +26,7 @@ export default function Artifact(props: { id: string }) {
 	return !error ? (
 		<ArtifactSingle data={data} />
 	) : (
-		<div className={'wrapper-600 border-wrapper'}>
+		<div className={'wrapper-600'}>
 			<p>{LANGUAGE.errorFetchingArtifact}</p>
 		</div>
 	);
