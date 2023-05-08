@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { formatAddress } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 import { useFileTx } from 'hooks/useFileTx';
 
@@ -20,6 +22,23 @@ export default function ArtifactPDFSingle(props: IProps) {
 		})();
 	}, [txData.fileUrl]);
 
+	function getTitle() {
+		if (props.data) {
+			return (
+				<>
+					<S.Name>{props.data.artifactName}</S.Name>
+					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+				</>
+			);
+		} else {
+			return (
+				<S.TP>
+					<Loader placeholder />
+				</S.TP>
+			);
+		}
+	}
+
 	function getDetailData() {
 		if (!props.data || !pdfUrl) {
 			return <Loader />;
@@ -30,6 +49,7 @@ export default function ArtifactPDFSingle(props: IProps) {
 
 	return (
 		<S.Wrapper>
+			<S.Title>{getTitle()}</S.Title>
 			<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
 		</S.Wrapper>
 	);

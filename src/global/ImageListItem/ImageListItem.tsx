@@ -52,23 +52,6 @@ export default function ImageListItem(props: IProps) {
 		})();
 	}, [txData.fileUrl]);
 
-	function getTitle() {
-		if (props.data) {
-			return (
-				<>
-					<S.Name>{props.data.artifactName}</S.Name>
-					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
-				</>
-			);
-		} else {
-			return (
-				<S.TP>
-					<Loader placeholder />
-				</S.TP>
-			);
-		}
-	}
-
 	function handleImageLoaded() {
 		setImageLoaded(true);
 	}
@@ -96,6 +79,23 @@ export default function ImageListItem(props: IProps) {
 			(document as any).mozCancelFullScreen();
 		} else if ((document as any).msExitFullscreen) {
 			(document as any).msExitFullscreen();
+		}
+	}
+
+	function getTitle() {
+		if (props.data) {
+			return (
+				<>
+					<S.Name>{props.data.artifactName}</S.Name>
+					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+				</>
+			);
+		} else {
+			return (
+				<S.TP>
+					<Loader placeholder />
+				</S.TP>
+			);
 		}
 	}
 

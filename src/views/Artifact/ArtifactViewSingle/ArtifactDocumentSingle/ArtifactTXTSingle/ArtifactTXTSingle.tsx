@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { formatAddress } from 'arcframework';
+
 import { Loader } from 'components/atoms/Loader';
 import { useFileTx } from 'hooks/useFileTx';
 
@@ -22,6 +24,23 @@ export default function ArtifactTXTSingle(props: IProps) {
 		})();
 	}, [txData.fileUrl]);
 
+	function getTitle() {
+		if (props.data) {
+			return (
+				<>
+					<S.Name>{props.data.artifactName}</S.Name>
+					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+				</>
+			);
+		} else {
+			return (
+				<S.TP>
+					<Loader placeholder />
+				</S.TP>
+			);
+		}
+	}
+
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader />;
@@ -31,10 +50,9 @@ export default function ArtifactTXTSingle(props: IProps) {
 	}
 
 	return (
-		<div className={'border-wrapper'}>
-			<S.Wrapper>
-				<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
-			</S.Wrapper>
-		</div>
+		<S.Wrapper>
+			<S.Title>{getTitle()}</S.Title>
+			<S.DetailWrapper className={'border-wrapper'}>{getDetailData()}</S.DetailWrapper>
+		</S.Wrapper>
 	);
 }
