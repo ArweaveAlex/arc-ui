@@ -2,9 +2,9 @@ import React from 'react';
 
 import * as ArcFramework from 'arcframework';
 
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
 
-import { ArtifactSingle } from './ArtifactSingle';
+import { ArtifactSingle } from './ArtifactViewSingle';
 
 export default function Artifact(props: { id: string }) {
 	const [data, setData] = React.useState<ArcFramework.ArtifactDetailType | null>(null);
@@ -27,7 +27,7 @@ export default function Artifact(props: { id: string }) {
 		<ArtifactSingle data={data} />
 	) : (
 		<div className={'wrapper-600'}>
-			<p>{LANGUAGE.errorFetchingArtifact}</p>
+			<p>{language.errorFetchingArtifact}</p>
 		</div>
 	);
 }

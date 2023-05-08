@@ -1,4 +1,4 @@
-export const LANGUAGE = {
+export const language = {
 	about: `About`,
 	aboutView: {
 		header1: `Preserving`,

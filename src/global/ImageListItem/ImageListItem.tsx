@@ -4,55 +4,53 @@ import { FALLBACK_IMAGE, formatAddress, getTxEndpoint } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
-import { LANGUAGE } from 'helpers/language';
+import { language } from 'helpers/language';
+import { useFileTx } from 'hooks/useFileTx';
 
 import * as S from './styles';
 import { IProps } from './types';
 
 export default function ImageListItem(props: IProps) {
-	const [jsonData, setJsonData] = React.useState<any>(null);
-
-	React.useEffect(() => {
-		if (props.data && props.data.rawData) {
-			setJsonData(JSON.parse(props.data.rawData));
-		}
-	}, [props.data]);
+	const txData = useFileTx(props.data.rawData);
 
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 	const [imageLoaded, setImageLoaded] = React.useState<boolean>(false);
 	const [imageZoomed, setImageZoomed] = React.useState(false);
 
-	const [metadata, setMetadata] = React.useState<any>(null);
+	const handleFullscreenChange = () => {
+		const fullscreenElement =
+			document.fullscreenElement ||
+			(document as any).webkitFullscreenElement ||
+			(document as any).mozFullScreenElement ||
+			(document as any).msFullscreenElement;
+
+		if (!fullscreenElement) {
+			setImageZoomed(false);
+		}
+	};
+
+	React.useEffect(() => {
+		document.addEventListener('fullscreenchange', handleFullscreenChange);
+		(document as any).addEventListener('webkitfullscreenchange', handleFullscreenChange);
+		(document as any).addEventListener('mozfullscreenchange', handleFullscreenChange);
+		(document as any).addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+		return () => {
+			document.removeEventListener('fullscreenchange', handleFullscreenChange);
+			(document as any).removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+			(document as any).removeEventListener('mozfullscreenchange', handleFullscreenChange);
+			(document as any).removeEventListener('MSFullscreenChange', handleFullscreenChange);
+		};
+	}, []);
 
 	React.useEffect(() => {
 		(async function () {
-			if (jsonData) {
-				const imageResponse = await fetch(
-					getTxEndpoint(jsonData.fileTxId.length > 0 ? jsonData.fileTxId : FALLBACK_IMAGE)
-				);
+			if (txData.fileUrl) {
+				const imageResponse = await fetch(txData.fileUrl);
 				setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
 			}
 		})();
-	}, [jsonData]);
-
-	React.useEffect(() => {
-		(async function () {
-			if (jsonData && jsonData.metadataTxId && jsonData.metadataTxId.length > 0) {
-				const metadataResponse = await fetch(getTxEndpoint(jsonData.metadataTxId));
-				if (metadataResponse.status === 200) {
-					setMetadata(JSON.parse(await (await fetch(metadataResponse.url)).text()));
-				} else {
-					setMetadata({});
-				}
-			}
-		})();
-	}, [jsonData]);
-
-	function handleImageZoom() {
-		if (imageLoaded) {
-			setImageZoomed(!imageZoomed);
-		}
-	}
+	}, [txData.fileUrl]);
 
 	function getTitle() {
 		if (props.data) {
@@ -75,17 +73,43 @@ export default function ImageListItem(props: IProps) {
 		setImageLoaded(true);
 	}
 
+	function requestFullScreen(element: any) {
+		setImageZoomed(true);
+		if (element.requestFullscreen) {
+			element.requestFullscreen();
+		} else if (element.webkitRequestFullscreen) {
+			element.webkitRequestFullscreen();
+		} else if (element.mozRequestFullScreen) {
+			element.mozRequestFullScreen();
+		} else if (element.msRequestFullscreen) {
+			element.msRequestFullscreen();
+		}
+	}
+
+	function exitFullScreen() {
+		setImageZoomed(false);
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
+		} else if ((document as any).webkitExitFullscreen) {
+			(document as any).webkitExitFullscreen();
+		} else if ((document as any).mozCancelFullScreen) {
+			(document as any).mozCancelFullScreen();
+		} else if ((document as any).msExitFullscreen) {
+			(document as any).msExitFullscreen();
+		}
+	}
+
 	function getImage() {
 		if (!imageZoomed) {
 			return (
-				<S.ImageWrapper onClick={() => handleImageZoom()}>
+				<S.ImageWrapper onClick={() => requestFullScreen(document.documentElement)}>
 					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
 					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} />
 				</S.ImageWrapper>
 			);
 		} else {
 			return (
-				<Modal header={null} handleClose={() => setImageZoomed(false)} noContainer zoom>
+				<Modal header={null} handleClose={() => exitFullScreen()} noContainer zoom>
 					{(!imageUrl || !imageLoaded) && <Loader placeholder />}
 					<S.Image src={imageUrl} onLoad={handleImageLoaded} loaded={imageLoaded} />
 				</Modal>
@@ -97,7 +121,7 @@ export default function ImageListItem(props: IProps) {
 		return (
 			<S.C2>
 				<S.C2Header>
-					<p>{LANGUAGE.artifactDetails}</p>
+					<p>{language.artifactDetails}</p>
 				</S.C2Header>
 				<S.C2Body>{body}</S.C2Body>
 			</S.C2>
@@ -105,20 +129,20 @@ export default function ImageListItem(props: IProps) {
 	}
 
 	function getBody() {
-		if (metadata && Object.keys(metadata).length > 0) {
-			const body = Object.keys(metadata).map((key) => {
+		if (txData.metadata && Object.keys(txData.metadata).length > 0) {
+			const body = Object.keys(txData.metadata).map((key) => {
 				return (
 					<S.ContentLine key={key}>
 						<S.InfoData>
 							<span>{key}</span>
-							<S.BodyData>{metadata[key]}</S.BodyData>
+							<S.BodyData>{txData.metadata[key]}</S.BodyData>
 						</S.InfoData>
 					</S.ContentLine>
 				);
 			});
 			return getBodyWrapper(body);
 		} else {
-			if (metadata && Object.keys(metadata).length <= 0) {
+			if (txData.metadata && Object.keys(txData.metadata).length <= 0) {
 				return null;
 			} else {
 				const body = Array.from({ length: 10 }, (_, i) => i + 1).map((element: number) => {

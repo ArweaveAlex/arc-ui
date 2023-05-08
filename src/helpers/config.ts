@@ -24,7 +24,7 @@ import repliesSVG from 'assets/replies.svg';
 import retweetSVG from 'assets/retweet.svg';
 import starSVG from 'assets/star.svg';
 
-import { LANGUAGE } from './language';
+import { language } from './language';
 
 export const ASSETS = {
 	arrowNext: arrowNextSVG,
@@ -56,7 +56,7 @@ export const ASSETS = {
 
 export const ARTIFACT_TYPES = {
 	[TAGS.values.defaultArtifactType]: {
-		label: LANGUAGE.default,
+		label: language.default,
 		icon: ASSETS.artifactTypes.default,
 	},
 	[TAGS.values.imageArtifactType]: {
@@ -83,4 +83,5 @@ export const ARTIFACT_TYPES = {
 
 export const DOM = {
 	modal: 'modal',
+	renderer: 'renderer',
 };

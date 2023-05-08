@@ -62,7 +62,6 @@ export const Name = styled.p`
 	word-break: break-word;
 `;
 
-
 export const ID = styled.p`
 	font-size: ${(props) => props.theme.typography.size.xSmall} !important;
 	font-weight: ${(props) => props.theme.typography.weight.medium} !important;

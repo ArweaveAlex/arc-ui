@@ -32,6 +32,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
     background: ${(props) => props.theme.colors.view.background};
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
   }
 
   * {
@@ -183,7 +187,6 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
     animation: ${open} ${fadeIn2};
-    padding: 20px;
   }
 
   .max-cutoff {
