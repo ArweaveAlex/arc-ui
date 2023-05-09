@@ -5,6 +5,10 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
+	width: 100%;
+`;
+
+export const VideoWrapper = styled.div`
 	height: 750px;
 	width: 100%;
 	margin: 0 auto;

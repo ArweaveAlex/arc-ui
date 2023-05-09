@@ -1,23 +1,13 @@
-import styled, { css, DefaultTheme } from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 
 import { fadeIn2, open, openLeft } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
-export const Wrapper = styled.div<{ fullScreen: boolean }>`
+export const Wrapper = styled.div`
 	height: 665px;
 	width: 100%;
 	position: relative;
 	animation: ${open} ${fadeIn2};
-	${(props) =>
-		props.fullScreen &&
-		css`
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 9999;
-		`}
 `;
 
 export const ViewerWrapper = styled.div`

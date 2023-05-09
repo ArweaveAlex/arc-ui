@@ -65,6 +65,7 @@ export const language = {
 	artifactGroup: `Artifact Group`,
 	artifactPreview: `Artifact Preview`,
 	artifactStamped: `Artifact Stamped`,
+	artifactType: `Artifact Type`,
 	artifacts: `Artifacts`,
 	artifactDetail: {
 		fileInformation: `File Information`,
@@ -119,6 +120,7 @@ export const language = {
 	details: `Details`,
 	description: `Description`,
 	disconnect: `Disconnect`,
+	download: `Download`,
 	editSelectedArtifacts: `Edit Selected Artifacts`,
 	enterFullScreen: `Enter Full Screen`,
 	errorFetchingArtifact: `Error Fetching Artifact`,

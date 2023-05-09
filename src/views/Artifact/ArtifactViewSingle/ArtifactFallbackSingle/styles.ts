@@ -11,63 +11,16 @@ export const Wrapper = styled.div`
 	}
 `;
 
-export const IconWrapper = styled.div`
-    height 375px;
-    width: 375px;
-    border: 1px solid ${(props) => props.theme.colors.border.primary};
-    border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-    position: relative;
-    p {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        font-size: ${(props) => props.theme.typography.size.xSmall};
-        font-weight: ${(props) => props.theme.typography.weight.medium};
-        color: ${(props) => props.theme.colors.font.primary.base};
-    }
-    @media(max-width: ${STYLING.cutoffs.initial}) {
-        width: 100%
-    }
-`;
-
-export const Icon = styled.div`
-	height: 97.5%;
-	width: 97.5%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	background: ${(props) => props.theme.colors.container.alt1.background};
-	svg {
-		width: 57.5%;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		fill: ${(props) => props.theme.colors.font.primary.base};
-	}
-	@media (max-width: ${STYLING.cutoffs.initial}) {
-		svg {
-			width: 37.5%;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			fill: ${(props) => props.theme.colors.font.primary.base};
-		}
-	}
-`;
-
 export const Content = styled.div`
 	height: 100%;
-	width: calc(100% - 400px);
-	margin: 0 0 0 25px;
+	width: 100%;
+	> * {
+		&:last-child {
+			margin: 0;
+		}
+	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: 100%;
-		margin: 25px 0;
 	}
 `;
 
@@ -228,4 +181,43 @@ export const Tag = styled.div`
 
 export const DataUrl = styled.a`
 	overflow-wrap: anywhere;
+`;
+
+export const Title = styled.div`
+	height: auto;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 0 20px 0;
+	@media (max-width: ${STYLING.cutoffs.tablet}) {
+		flex-direction: column;
+		button {
+			margin: 20px 0 0 0;
+		}
+	}
+`;
+
+export const NID = styled.div``;
+
+export const Name = styled.p`
+	line-height: 1.5 !important;
+	color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+	font-weight: ${(props) => props.theme.typography.weight.bold} !important;
+	font-family: ${(props) => props.theme.typography.family.alt1} !important;
+	font-size: clamp(22px, 2.25vw, 28px) !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-word;
+`;
+
+export const ID = styled.p`
+	font-size: ${(props) => props.theme.typography.size.xSmall} !important;
+	font-weight: ${(props) => props.theme.typography.weight.medium} !important;
+	color: ${(props) => props.theme.colors.font.primary.alt6} !important;
+	margin: 10px 0 0 0 !important;
+`;
+
+export const TP = styled.div`
+	height: 60px;
+	width: 100%;
 `;

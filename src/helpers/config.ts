@@ -3,7 +3,7 @@ import { TAGS } from 'arcframework';
 import arrowNextSVG from 'assets/arrow-next.svg';
 import arrowPreviousSVG from 'assets/arrow-previous.svg';
 import artifactSVG from 'assets/artifact.svg';
-import imageArtifactTypeSVG from 'assets/artifact-types/image.svg';
+import fileArtifactTypeSVG from 'assets/artifact-types/file.svg';
 import nostrEventArtifactTypeSVG from 'assets/artifact-types/nostr.svg';
 import redditThreadArtifactTypeSVG from 'assets/artifact-types/reddit-thread.svg';
 import messagingArtifactTypeSVG from 'assets/artifact-types/twitter.svg';
@@ -32,7 +32,7 @@ export const ASSETS = {
 	artifact: artifactSVG,
 	artifactTypes: {
 		default: defaultArtifactTypeSVG,
-		image: imageArtifactTypeSVG,
+		file: fileArtifactTypeSVG,
 		messaging: messagingArtifactTypeSVG,
 		nostrEvent: nostrEventArtifactTypeSVG,
 		redditThread: redditThreadArtifactTypeSVG,
@@ -59,13 +59,29 @@ export const ARTIFACT_TYPES = {
 		label: language.default,
 		icon: ASSETS.artifactTypes.default,
 	},
-	[TAGS.values.imageArtifactType]: {
-		label: TAGS.values.imageArtifactType,
-		icon: ASSETS.artifactTypes.image,
-	},
 	[TAGS.values.messagingArtifactType]: {
 		label: TAGS.values.messagingArtifactType,
 		icon: ASSETS.artifactTypes.messaging,
+	},
+	[TAGS.values.imageArtifactType]: {
+		label: TAGS.values.imageArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.documentArtifactType]: {
+		label: TAGS.values.documentArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.audioArtifactType]: {
+		label: TAGS.values.audioArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.videoArtifactType]: {
+		label: TAGS.values.videoArtifactType,
+		icon: ASSETS.artifactTypes.file,
+	},
+	[TAGS.values.ebookArtifactType]: {
+		label: TAGS.values.ebookArtifactType,
+		icon: ASSETS.artifactTypes.file,
 	},
 	[TAGS.values.nostrEventArtifactType]: {
 		label: TAGS.values.nostrEventArtifactType,

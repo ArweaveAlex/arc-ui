@@ -1,12 +1,11 @@
-import { ArtifactEnum, TAGS } from 'arcframework';
+import { ArtifactEnum } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
-import { ARTIFACT_TYPES } from 'helpers/config';
 
 import { ArtifactAudioSingle } from './ArtifactAudioSingle';
-import { ArtifactDetailSingle } from './ArtifactDetailSingle';
 import { ArtifactDocumentSingle } from './ArtifactDocumentSingle';
 import { ArtifactEbookSingle } from './ArtifactEbookSingle';
+import { ArtifactFallbackSingle } from './ArtifactFallbackSingle';
 import { ArtifactImageSingle } from './ArtifactImageSingle';
 import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
 import { ArtifactNostrSingle } from './ArtifactNostrSingle';
@@ -17,19 +16,6 @@ import * as S from './styles';
 import { IProps } from './types';
 
 export default function ArtifactViewSingle(props: IProps) {
-	function getArtifactType() {
-		if (props.data) {
-			let artifactType = ARTIFACT_TYPES[props.data.artifactType];
-			if (artifactType) {
-				return artifactType;
-			} else {
-				return ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
-			}
-		} else {
-			return null;
-		}
-	}
-
 	function getArtifact() {
 		if (props.data) {
 			switch (props.data.artifactType) {
@@ -52,7 +38,7 @@ export default function ArtifactViewSingle(props: IProps) {
 				case ArtifactEnum.Webpage:
 					return <ArtifactWebpageSingle data={props.data} />;
 				default:
-					return <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
+					return <ArtifactFallbackSingle data={props.data} />;
 			}
 		} else {
 			return (

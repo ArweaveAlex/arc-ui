@@ -4,7 +4,7 @@ import { FALLBACK_IMAGE, formatAddress, getTxEndpoint } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
-import { language } from 'helpers/language';
+import { FileMetadata } from 'global/FileMetadata';
 import { useFileTx } from 'hooks/useFileTx';
 
 import * as S from './styles';
@@ -117,46 +117,6 @@ export default function ImageListItem(props: IProps) {
 		}
 	}
 
-	function getBodyWrapper(body: React.ReactNode) {
-		return (
-			<S.C2>
-				<S.C2Header>
-					<p>{language.artifactDetails}</p>
-				</S.C2Header>
-				<S.C2Body>{body}</S.C2Body>
-			</S.C2>
-		);
-	}
-
-	function getBody() {
-		if (txData.metadata && Object.keys(txData.metadata).length > 0) {
-			const body = Object.keys(txData.metadata).map((key) => {
-				return (
-					<S.ContentLine key={key}>
-						<S.InfoData>
-							<span>{key}</span>
-							<S.BodyData>{txData.metadata[key]}</S.BodyData>
-						</S.InfoData>
-					</S.ContentLine>
-				);
-			});
-			return getBodyWrapper(body);
-		} else {
-			if (txData.metadata && Object.keys(txData.metadata).length <= 0) {
-				return null;
-			} else {
-				const body = Array.from({ length: 10 }, (_, i) => i + 1).map((element: number) => {
-					return (
-						<S.BP key={element}>
-							<Loader placeholder />
-						</S.BP>
-					);
-				});
-				return getBodyWrapper(body);
-			}
-		}
-	}
-
 	return (
 		<S.ICWrapper>
 			<S.C1>
@@ -165,7 +125,7 @@ export default function ImageListItem(props: IProps) {
 					{getImage()}
 				</S.C1Content>
 			</S.C1>
-			{getBody()}
+			<FileMetadata metadata={txData.metadata} />
 		</S.ICWrapper>
 	);
 }

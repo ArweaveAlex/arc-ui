@@ -3,6 +3,7 @@ import React from 'react';
 import { formatAddress } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
+import { FileMetadata } from 'global/FileMetadata';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useFileTx } from 'hooks/useFileTx';
@@ -117,65 +118,70 @@ export default function ArtifactAudioSingle(props: IProps) {
 	}, [isDurationAvailable, audioRef.current, formatTime]);
 
 	return props.data && audioUrl ? (
-		<S.Wrapper className={'border-wrapper'}>
-			<S.Audio
-				ref={audioRef}
-				src={audioUrl}
-				onPlay={() => setIsPlaying(true)}
-				onPause={() => setIsPlaying(false)}
-				onTimeUpdate={updateTime}
-			></S.Audio>
-			<S.Content>
-				<S.C1>
-					<S.Section1>
-						<S.NID>
-							<S.Name>{props.data.artifactName}</S.Name>
-							<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
-						</S.NID>
-						<S.PlayWrapper playing={!isPlaying}>
-							<IconButton
-								type={'alt1'}
-								src={isPlaying ? ASSETS.mediaPause : ASSETS.mediaPlay}
-								handlePress={togglePlayPause}
-								tooltip={isPlaying ? language.pause : language.play}
-								dimensions={{
-									wrapper: 35,
-									icon: 20.5,
-								}}
+		<>
+			<S.Wrapper className={'border-wrapper'}>
+				<S.Audio
+					ref={audioRef}
+					src={audioUrl}
+					onPlay={() => setIsPlaying(true)}
+					onPause={() => setIsPlaying(false)}
+					onTimeUpdate={updateTime}
+				></S.Audio>
+				<S.Content>
+					<S.C1>
+						<S.Section1>
+							<S.NID>
+								<S.Name>{props.data.artifactName}</S.Name>
+								<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+							</S.NID>
+							<S.PlayWrapper playing={!isPlaying}>
+								<IconButton
+									type={'alt1'}
+									src={isPlaying ? ASSETS.mediaPause : ASSETS.mediaPlay}
+									handlePress={togglePlayPause}
+									tooltip={isPlaying ? language.pause : language.play}
+									dimensions={{
+										wrapper: 35,
+										icon: 20.5,
+									}}
+								/>
+							</S.PlayWrapper>
+						</S.Section1>
+						<S.VolumeWrapper>
+							<S.V1>
+								<p>{language.volume}</p>
+							</S.V1>
+							<S.VolumeBar
+								type={'range'}
+								className={'custom-range'}
+								min={'0'}
+								max={'1'}
+								step={'0.01'}
+								value={volume.toString()}
+								onChange={handleVolumeChange}
 							/>
-						</S.PlayWrapper>
-					</S.Section1>
-					<S.VolumeWrapper>
-						<S.V1>
-							<p>{language.volume}</p>
-						</S.V1>
-						<S.VolumeBar
+						</S.VolumeWrapper>
+					</S.C1>
+					<S.ProgressWrapper>
+						<S.ProgressBar
 							type={'range'}
 							className={'custom-range'}
 							min={'0'}
-							max={'1'}
-							step={'0.01'}
-							value={volume.toString()}
-							onChange={handleVolumeChange}
+							max={'100'}
+							step={'0.1'}
+							value={progress.toString()}
+							onChange={handleProgressChange}
 						/>
-					</S.VolumeWrapper>
-				</S.C1>
-				<S.ProgressWrapper>
-					<S.ProgressBar
-						type={'range'}
-						className={'custom-range'}
-						min={'0'}
-						max={'100'}
-						step={'0.1'}
-						value={progress.toString()}
-						onChange={handleProgressChange}
-					/>
-					<S.TimeWrapper>
-						<p>{elapsedTime}</p>
-						<p>{remainingTime}</p>
-					</S.TimeWrapper>
-				</S.ProgressWrapper>
-			</S.Content>
-		</S.Wrapper>
+						<S.TimeWrapper>
+							<p>{elapsedTime}</p>
+							<p>{remainingTime}</p>
+						</S.TimeWrapper>
+					</S.ProgressWrapper>
+				</S.Content>
+			</S.Wrapper>
+			<S.MetadataWrapper>
+				<FileMetadata metadata={txData.metadata} />
+			</S.MetadataWrapper>
+		</>
 	) : null;
 }

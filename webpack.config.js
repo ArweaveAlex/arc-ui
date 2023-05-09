@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.tsx',
@@ -45,6 +46,10 @@ module.exports = {
 	],
 	module: {
 		rules: [
+			{
+				test: /\.md$/,
+				use: 'raw-loader',
+			},
 			{
 				test: /\.(ts|tsx)$/,
 				exclude: /node_modules/,
@@ -121,6 +126,7 @@ module.exports = {
 				{ from: 'public/manifest.json', to: 'manifest.json' },
 			],
 		}),
+		new CleanWebpackPlugin(),
 		new webpack.ProvidePlugin({
 			process: 'process/browser',
 			Buffer: ['buffer', 'Buffer'],
@@ -166,7 +172,11 @@ module.exports = {
 			helpers: path.resolve(__dirname, 'src/helpers/'),
 			hooks: path.resolve(__dirname, 'src/hooks/'),
 			views: path.resolve(__dirname, 'src/views/'),
+			wallet: path.resolve(__dirname, 'src/wallet/'),
+			workers: path.resolve(__dirname, 'src/workers/'),
 			wrappers: path.resolve(__dirname, 'src/wrappers/'),
+			'asn1.js': path.resolve(__dirname, 'node_modules/asn1.js'),
+			elliptic: path.resolve(__dirname, 'node_modules/elliptic'),
 		},
 	},
 	output: {

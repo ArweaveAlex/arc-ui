@@ -4,14 +4,14 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-    height: 750px;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    position: relative;
-    @media(max-width: ${STYLING.dimensions.rendererWrapper}) {
-        width: auto;
-    }
+	height: 750px;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto 105px auto;
+	position: relative;
+	@media (max-width: ${STYLING.dimensions.rendererWrapper}) {
+		width: auto;
+	}
 `;
 
 export const DetailWrapper = styled.div`

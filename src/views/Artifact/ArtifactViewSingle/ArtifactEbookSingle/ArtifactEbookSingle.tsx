@@ -5,6 +5,7 @@ import { useTheme } from 'styled-components';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
+import { FileMetadata } from 'global/FileMetadata';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { StepType } from 'helpers/types';
@@ -31,8 +32,6 @@ export default function ArtifactEbookSingle(props: IProps) {
 
 	const [renditionState, setRenditionState] = React.useState<any>(null);
 	const [navigationOpen, setNavigationOpen] = React.useState<boolean>(false);
-
-	const [fullScreen, setFullScreen] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		(async function () {
@@ -136,7 +135,6 @@ export default function ArtifactEbookSingle(props: IProps) {
 				console.error(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
 			});
 		}
-		setFullScreen(!fullScreen);
 	}
 
 	const handleKeyDown = (event: any) => {
@@ -167,74 +165,77 @@ export default function ArtifactEbookSingle(props: IProps) {
 	}
 
 	return (
-		<S.Wrapper className={'border-wrapper'} ref={wrapperRef} fullScreen={fullScreen}>
-			{book ? (
-				<>
-					{navigationOpen && (
-						<S.NWrapper>
-							<S.NContent>
-								<CloseHandler active={navigationOpen} callback={() => setNavigationOpen(false)} disabled={false}>
-									<S.NTitle>
-										<p>{language.tableOfContents}</p>
-									</S.NTitle>
-									<S.NList>
-										{toc.map((chapter: any, index: number) => (
-											<S.NListItem key={index} disabled={false} onClick={() => handleChapterClick(chapter.href)}>
-												{chapter.label}
-											</S.NListItem>
-										))}
-									</S.NList>
-								</CloseHandler>
-							</S.NContent>
-						</S.NWrapper>
-					)}
-					{renditionState && (
-						<>
-							{getAction('prev', () => renditionState.prev(), false)}
-							{getAction('next', () => renditionState.next(), false)}
-						</>
-					)}
-					<S.ViewerWrapper>
-						<S.TitleAction>
-							<IconButton
-								type={'alt3'}
-								src={ASSETS.menu}
-								handlePress={() => setNavigationOpen(true)}
-								tooltip={language.navigation}
-								dimensions={{
-									wrapper: 22.5,
-									icon: 12.5,
-								}}
-							/>
-							<p>{bookTitle ? bookTitle : `-`}</p>
-							<IconButton
-								type={'alt3'}
-								src={ASSETS.fullScreen}
-								handlePress={() => toggleFullScreen()}
-								tooltip={language.enterFullScreen}
-								dimensions={{
-									wrapper: 22.5,
-									icon: 12.5,
-								}}
-							/>
-						</S.TitleAction>
-						<S.Viewer ref={bookRef}>
-							{!bookStart && (
-								<>
-									<S.PStart>
-										<p>{currentPageNumber.toString()}</p>
-									</S.PStart>
-									<S.PEnd>
-										<p>{(currentPageNumber + 1).toString()}</p>
-									</S.PEnd>
-								</>
-							)}
-						</S.Viewer>
-					</S.ViewerWrapper>
-				</>
-			) : (
-				<Loader />
-			)}
-		</S.Wrapper>
+		<>
+			<S.Wrapper className={'border-wrapper'} ref={wrapperRef}>
+				{book ? (
+					<>
+						{navigationOpen && (
+							<S.NWrapper>
+								<S.NContent>
+									<CloseHandler active={navigationOpen} callback={() => setNavigationOpen(false)} disabled={false}>
+										<S.NTitle>
+											<p>{language.tableOfContents}</p>
+										</S.NTitle>
+										<S.NList>
+											{toc.map((chapter: any, index: number) => (
+												<S.NListItem key={index} disabled={false} onClick={() => handleChapterClick(chapter.href)}>
+													{chapter.label}
+												</S.NListItem>
+											))}
+										</S.NList>
+									</CloseHandler>
+								</S.NContent>
+							</S.NWrapper>
+						)}
+						{renditionState && (
+							<>
+								{getAction('prev', () => renditionState.prev(), false)}
+								{getAction('next', () => renditionState.next(), false)}
+							</>
+						)}
+						<S.ViewerWrapper>
+							<S.TitleAction>
+								<IconButton
+									type={'alt3'}
+									src={ASSETS.menu}
+									handlePress={() => setNavigationOpen(true)}
+									tooltip={language.navigation}
+									dimensions={{
+										wrapper: 22.5,
+										icon: 12.5,
+									}}
+								/>
+								<p>{bookTitle ? bookTitle : `-`}</p>
+								<IconButton
+									type={'alt3'}
+									src={ASSETS.fullScreen}
+									handlePress={() => toggleFullScreen()}
+									tooltip={language.enterFullScreen}
+									dimensions={{
+										wrapper: 22.5,
+										icon: 12.5,
+									}}
+								/>
+							</S.TitleAction>
+							<S.Viewer ref={bookRef}>
+								{!bookStart && (
+									<>
+										<S.PStart>
+											<p>{currentPageNumber.toString()}</p>
+										</S.PStart>
+										<S.PEnd>
+											<p>{(currentPageNumber + 1).toString()}</p>
+										</S.PEnd>
+									</>
+								)}
+							</S.Viewer>
+						</S.ViewerWrapper>
+					</>
+				) : (
+					<Loader />
+				)}
+			</S.Wrapper>
+			<FileMetadata metadata={txData.metadata} />
+		</>
 	);
 }

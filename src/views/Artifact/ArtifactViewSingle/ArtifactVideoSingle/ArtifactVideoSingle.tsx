@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { formatAddress, TAGS } from 'arcframework';
+import { formatAddress } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
-import { ARTIFACT_TYPES, ASSETS } from 'helpers/config';
+import { FileMetadata } from 'global/FileMetadata';
+import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useFileTx } from 'hooks/useFileTx';
 
-import { ArtifactDetailSingle } from '../ArtifactDetailSingle';
+import { ArtifactFallbackSingle } from '../ArtifactFallbackSingle';
 import { IProps } from '../types';
 
 import * as S from './styles';
 
-function Video(props: IProps) {
+function Video(props: IProps & { type: string }) {
 	const txData = useFileTx(props.data.rawData);
 
 	const videoRef = React.useRef(null);
@@ -100,9 +101,9 @@ function Video(props: IProps) {
 	}, [isDurationAvailable, videoRef.current, formatTime]);
 
 	return props.data && txData.fileUrl ? (
-		<S.Wrapper className={'border-wrapper'}>
+		<S.VideoWrapper className={'border-wrapper'}>
 			<S.Video ref={videoRef} onLoadedMetadata={handleLoadedMetadata} onTimeUpdate={updateTime}>
-				<S.VideoSource type={'video/mp4'} src={txData.fileUrl} />
+				<S.VideoSource type={props.type} src={txData.fileUrl} />
 			</S.Video>
 			<S.DisplayWrapper playing={isPlaying}>
 				<S.NID>
@@ -152,37 +153,31 @@ function Video(props: IProps) {
 					/>
 				</S.VolumeWrapper>
 			</S.Content>
-		</S.Wrapper>
+		</S.VideoWrapper>
 	) : null;
 }
 
 export default function ArtifactVideoSingle(props: IProps) {
-	function getArtifactType() {
-		if (props.data) {
-			let artifactType = ARTIFACT_TYPES[props.data.artifactType];
-			if (artifactType) {
-				return artifactType;
-			} else {
-				return ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
-			}
-		} else {
-			return null;
-		}
-	}
+	const txData = useFileTx(props.data.rawData);
 
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader />;
 		} else {
-			let renderer = <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
+			let renderer = <ArtifactFallbackSingle data={props.data} />;
 			switch (props.data.fileType) {
 				case 'mp4':
-					renderer = <Video data={props.data}></Video>;
+					renderer = <Video data={props.data} type={'video/mp4'} />;
 					break;
 			}
 			return renderer;
 		}
 	}
 
-	return <>{getDetailData()}</>;
+	return (
+		<S.Wrapper>
+			{getDetailData()}
+			<FileMetadata metadata={txData.metadata} />
+		</S.Wrapper>
+	);
 }

@@ -215,6 +215,7 @@ export const GlobalStyle = createGlobalStyle`
     p {
       font-weight: ${(props) => props.theme.typography.weight.medium};
     }
+  }
 `;
 
 export const RangeBar = styled.input.attrs({ type: 'range' })`

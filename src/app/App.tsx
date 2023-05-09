@@ -8,12 +8,9 @@ export function App() {
 
 	React.useEffect(() => {
 		function sendHeightToParent() {
-			const extraHeightPercentage = 5;
-			const extraHeight = (document.body.scrollHeight * extraHeightPercentage) / 100;
-
 			window.parent.postMessage(
 				{
-					frameHeight: document.body.scrollHeight + extraHeight,
+					frameHeight: document.body.scrollHeight + 100,
 					frameId: DOM.renderer,
 				},
 				'*'

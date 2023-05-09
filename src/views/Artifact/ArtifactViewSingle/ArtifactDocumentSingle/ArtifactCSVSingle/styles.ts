@@ -4,19 +4,18 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    position: relative;
-    @media(max-width: ${STYLING.dimensions.rendererWrapper}) {
-        width: auto;
-    }
+	height: 100%;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	position: relative;
+	@media (max-width: ${STYLING.dimensions.rendererWrapper}) {
+		width: auto;
+	}
 `;
 
 export const DetailWrapper = styled.div`
 	height: 100%;
-	min-height: 141.5px;
 	width: 100%;
 	position: relative;
 	animation: ${open} ${fadeIn2};
@@ -25,27 +24,45 @@ export const DetailWrapper = styled.div`
 
 export const Table = styled.table`
 	width: 100%;
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-collapse: separate;
+	border-spacing: 0;
 	border-radius: ${STYLING.dimensions.borderRadius};
+	border: 1px solid ${(props) => props.theme.colors.border.primary};
+	overflow: hidden;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: ${STYLING.cutoffs.initial};
 	}
+
+	th,
+	td {
+		padding: 8px;
+		text-align: left;
+		border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+		border-right: 1px solid ${(props) => props.theme.colors.border.primary};
+	}
+
+	th {
+		font-weight: ${(props) => props.theme.typography.weight.medium};
+	}
+
+	tr {
+		> * {
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
 `;
 
-export const Th = styled.th`
-	font-weight: bold;
-	padding: 8px;
-	text-align: left;
+export const Tbody = styled.tbody`
+	> * {
+		&:last-child {
+			td {
+				border-bottom: none;
+			}
+		}
+	}
 `;
-
-export const Td = styled.td`
-	padding: 8px;
-	text-align: left;
-`;
-
-export const Tr = styled.tr``;
-
-export const Tbody = styled.tbody``;
 
 export const Title = styled.div`
 	height: auto;

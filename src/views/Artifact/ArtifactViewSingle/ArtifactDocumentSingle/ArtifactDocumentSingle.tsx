@@ -1,34 +1,23 @@
-import { TAGS } from 'arcframework';
-
 import { Loader } from 'components/atoms/Loader';
-import { ARTIFACT_TYPES } from 'helpers/config';
+import { FileMetadata } from 'global/FileMetadata';
+import { useFileTx } from 'hooks/useFileTx';
 
-import { ArtifactDetailSingle } from '../ArtifactDetailSingle';
+import { ArtifactFallbackSingle } from '../ArtifactFallbackSingle';
 import { IProps } from '../types';
 
 import { ArtifactCSVSingle } from './ArtifactCSVSingle';
 import { ArtifactPDFSingle } from './ArtifactPDFSingle';
 import { ArtifactTXTSingle } from './ArtifactTXTSingle';
+import * as S from './styles';
 
 export default function ArtifactDocumentSingle(props: IProps) {
-	function getArtifactType() {
-		if (props.data) {
-			let artifactType = ARTIFACT_TYPES[props.data.artifactType];
-			if (artifactType) {
-				return artifactType;
-			} else {
-				return ARTIFACT_TYPES[TAGS.values.defaultArtifactType]!;
-			}
-		} else {
-			return null;
-		}
-	}
+	const txData = useFileTx(props.data.rawData);
 
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader />;
 		} else {
-			let renderer = <ArtifactDetailSingle data={props.data} type={getArtifactType()} />;
+			let renderer = <ArtifactFallbackSingle data={props.data} />;
 			switch (props.data.fileType) {
 				case 'csv':
 					renderer = <ArtifactCSVSingle data={props.data}></ArtifactCSVSingle>;
@@ -44,5 +33,10 @@ export default function ArtifactDocumentSingle(props: IProps) {
 		}
 	}
 
-	return <>{getDetailData()}</>;
+	return (
+			<S.Wrapper>
+				{getDetailData()}
+				<FileMetadata metadata={txData.metadata} />
+			</S.Wrapper>
+		);
 }

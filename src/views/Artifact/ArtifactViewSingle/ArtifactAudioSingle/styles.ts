@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
 	width: ${STYLING.dimensions.rendererWrapper};
 	max-width: 100%;
 	margin: 0 auto;
-	max-width: 90vw;
 	animation: ${open} ${fadeIn2};
 	@media (max-width: ${STYLING.cutoffs.secondary}) {
 		height: auto;
@@ -124,4 +123,10 @@ export const TimeWrapper = styled.div`
 		font-weight: ${(props) => props.theme.typography.weight.medium} !important;
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
+`;
+
+export const MetadataWrapper = styled.div`
+	width: ${STYLING.dimensions.rendererWrapper};
+	max-width: 100%;
+	margin: 0 auto;
 `;

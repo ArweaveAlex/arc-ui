@@ -273,7 +273,7 @@ export const defaultTheme: DefaultTheme = {
 		},
 		transparent: DEFAULT.transparent,
 		view: {
-			background: DEFAULT.neutral1,
+			background: DEFAULT.transparent,
 		},
 		warning: DEFAULT.contrast,
 	},

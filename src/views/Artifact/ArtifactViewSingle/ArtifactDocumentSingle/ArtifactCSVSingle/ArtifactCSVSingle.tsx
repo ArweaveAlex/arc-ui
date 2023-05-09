@@ -59,18 +59,18 @@ export default function ArtifactCSVSingle(props: IProps) {
 					<thead>
 						<tr>
 							{headers.map((header: string) => (
-								<S.Th key={getRandomInt()}>{header}</S.Th>
+								<th key={getRandomInt()}>{header}</th>
 							))}
 						</tr>
 					</thead>
 					<S.Tbody>
 						{data.map((row: string) => {
 							return (
-								<S.Tr key={getRandomInt()}>
+								<tr key={getRandomInt()}>
 									{row.split(',').map((cell: string) => (
-										<S.Td key={getRandomInt()}>{cell}</S.Td>
+										<td key={getRandomInt()}>{cell}</td>
 									))}
-								</S.Tr>
+								</tr>
 							);
 						})}
 					</S.Tbody>
