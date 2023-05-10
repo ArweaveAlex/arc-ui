@@ -1,49 +1,36 @@
 import Bundlr from '@bundlr-network/client';
-import { execSync } from 'child_process';
-import fs from 'fs';
+import Arweave from 'arweave';
+import { defaultCacheOptions, WarpFactory } from 'warp-contracts';
 
-// Deploys files and adds a renderer tags.
-async function deployRenderer(folder) {
-	const jwk = JSON.parse(fs.readFileSync(process.env.PATH_TO_WALLET).toString());
-	const bundlr = new Bundlr.default('http://node2.bundlr.network', 'arweave', jwk);
+(async () => {
+	const DEPLOY_KEY = process.env.DEPLOY_KEY;
+	const ANT_CONTRACT = process.env.ANT_CONTRACT;
+	const DEPLOY_FOLDER = './dist';
+	const BUNDLR_NODE = 'https://node2.bundlr.network';
 
-	// TODO: tag the renderer when it's ready
+	const arweave = Arweave.init({
+		host: 'arweave.net',
+		port: 443,
+		protocol: 'https',
+	});
+	const jwk = JSON.parse(Buffer.from(DEPLOY_KEY, 'base64').toString('utf-8'));
 
-	// const tags = [
-	// 	{ name: 'Implements', value: 'ANS-110' },
-	// 	{ name: 'Type', value: 'renderer' },
-	// 	{ name: 'Title', value: 'The Microscope Renderer' },
-	// 	{ name: 'Description', value: 'ANS-110' },
-	// 	{ name: 'Topic:Renderer', value: 'Renderer' },
-	// 	{ name: 'Render-For', value: '<add value here if the renderer is for a specific ANS-110 type>' },
-	// ];
+	const bundlr = new Bundlr.default(BUNDLR_NODE, 'arweave', jwk);
+	const warp = WarpFactory.custom(arweave, defaultCacheOptions, 'mainnet').useArweaveGateway().build();
 
-	const uploaded = await bundlr.uploadFolder(folder, {
-		indexFile: 'index.html', // optional index file (file the user will load when accessing the manifest)
-		batchSize: 50, //number of items to upload at once
-		keepDeleted: false, // whether to keep now deleted items from previous uploads
-		// manifestTags: [{ tags }],
+	const contract = warp.contract(ANT_CONTRACT).connect(jwk);
+
+	const result = await bundlr.uploadFolder(DEPLOY_FOLDER, {
+		indexFile: 'index.html',
 	});
 
-	console.log(`Files uploaded. Manifest Id ${uploaded.id}`);
-}
+	await new Promise((r) => setTimeout(r, 1000));
 
-// Deploys files without adding tags
-function deployFiles(folder) {
-	execSync(
-		`npx bundlr upload-dir ${folder} -w ${process.env.PATH_TO_WALLET} --index-file index.html -c arweave -h https://node2.bundlr.network --no-confirmation`,
-		{ encoding: 'utf8', stdio: 'inherit' }
-	);
-}
+	await contract.writeInteraction({
+		function: 'setRecord',
+		subDomain: '@',
+		transactionId: result.id,
+	});
 
-if (!process.env.PATH_TO_WALLET) {
-	console.log('Set process.env.PATH_TO_WALLET to the path to your key file.');
-	process.exit(1);
-}
-const folder = process.argv[2];
-if (!folder) {
-	console.log('You must pass a path to this script. eg. node ./perma-deploy.mjs ./path/to/dist');
-	process.exit(1);
-}
-
-deployRenderer(folder).catch(console.log);
+	console.log(`[ ${result.id} ]`);
+})();
