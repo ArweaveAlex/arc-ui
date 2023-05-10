@@ -34,9 +34,9 @@ export default function ArtifactDocumentSingle(props: IProps) {
 	}
 
 	return (
-			<S.Wrapper>
-				{getDetailData()}
-				<FileMetadata metadata={txData.metadata} />
-			</S.Wrapper>
-		);
+		<S.Wrapper>
+			{getDetailData()}
+			<FileMetadata metadata={txData.metadata} />
+		</S.Wrapper>
+	);
 }

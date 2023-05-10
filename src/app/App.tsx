@@ -34,7 +34,7 @@ export function App() {
 			mutationObserver.disconnect();
 		};
 	}, []);
-	
+
 	return query.tx ? (
 		<div className={'view-wrapper max-cutoff'}>
 			<div id={DOM.modal} />
