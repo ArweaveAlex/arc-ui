@@ -6,9 +6,7 @@ const ANT_CONTRACT = process.env.ANT_CONTRACT;
 
 (async () => {
   try {
-	console.log(`Deploying ${DEPLOY_FOLDER} folder`);
-    const resultTxId = await deployBundle(DEPLOY_KEY, ANT_CONTRACT, DEPLOY_FOLDER);
-    console.log(`Deployment Tx ID: ${resultTxId}`);
+    await deployBundle(DEPLOY_KEY, ANT_CONTRACT, DEPLOY_FOLDER);
   } catch (e) {
     console.error(e);
   }
