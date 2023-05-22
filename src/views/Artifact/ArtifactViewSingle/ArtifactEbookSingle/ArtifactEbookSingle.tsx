@@ -42,7 +42,6 @@ export default function ArtifactEbookSingle(props: IProps) {
 				setBook(book);
 
 				book.loaded.metadata.then((metadata) => {
-					console.log(metadata);
 					setBookTitle(metadata.title);
 				});
 
