@@ -8,6 +8,7 @@ export default function FileDownload(props: IProps) {
 		if (props.fileUrl) {
 			const link = document.createElement('a');
 			link.href = props.fileUrl;
+			link.download = 'file';
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);
