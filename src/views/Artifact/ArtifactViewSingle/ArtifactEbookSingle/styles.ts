@@ -221,3 +221,8 @@ export const PEnd = styled(PStart)`
 		display: none;
 	}
 `;
+
+export const Action = styled.div`
+	width: fit-content;
+	margin: 0 0 20px auto;
+`;

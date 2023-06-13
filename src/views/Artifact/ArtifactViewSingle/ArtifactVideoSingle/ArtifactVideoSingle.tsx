@@ -4,6 +4,7 @@ import { formatAddress } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
+import { FileDownload } from 'global/FileDownload';
 import { FileMetadata } from 'global/FileMetadata';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -176,6 +177,9 @@ export default function ArtifactVideoSingle(props: IProps) {
 
 	return (
 		<S.Wrapper>
+			<S.Action>
+				<FileDownload fileUrl={txData.fileUrl} />
+			</S.Action>
 			{getDetailData()}
 			<FileMetadata metadata={txData.metadata} />
 		</S.Wrapper>

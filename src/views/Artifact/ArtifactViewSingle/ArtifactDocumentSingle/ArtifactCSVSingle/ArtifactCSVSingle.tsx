@@ -3,6 +3,7 @@ import React from 'react';
 import { formatAddress } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
+import { FileDownload } from 'global/FileDownload';
 import { useFileTx } from 'hooks/useFileTx';
 
 import { IProps } from '../../types';
@@ -24,18 +25,15 @@ export default function ArtifactCSVSingle(props: IProps) {
 		})();
 	}, [txData.fileUrl]);
 
-	function getRandomInt() {
-		const min = Math.ceil(1);
-		const max = Math.floor(10000);
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-
 	function getTitle() {
 		if (props.data) {
 			return (
 				<>
-					<S.Name>{props.data.artifactName}</S.Name>
-					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+					<S.NID>
+						<S.Name>{props.data.artifactName}</S.Name>
+						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+					</S.NID>
+					<FileDownload fileUrl={txData.fileUrl} />
 				</>
 			);
 		} else {
@@ -56,21 +54,24 @@ export default function ArtifactCSVSingle(props: IProps) {
 			const data = rows.slice(1);
 			return (
 				<S.Table>
-					<thead>
-						<tr>
-							{headers.map((header: string) => (
-								<th key={getRandomInt()}>{header}</th>
-							))}
-						</tr>
-					</thead>
+					<S.THead>
+						{headers.map((header: string, index: number) => (
+							<S.THeadCell key={index}>
+								<p>{header}</p>
+							</S.THeadCell>
+						))}
+					</S.THead>
+
 					<S.Tbody>
-						{data.map((row: string) => {
+						{data.map((row: string, rowIndex: number) => {
 							return (
-								<tr key={getRandomInt()}>
-									{row.split(',').map((cell: string) => (
-										<td key={getRandomInt()}>{cell}</td>
+								<S.TBodyRow key={rowIndex}>
+									{row.split(',').map((cell: string, cellIndex: number) => (
+										<S.TBodyCell key={`${rowIndex}-${cellIndex}`}>
+											<p>{cell}</p>
+										</S.TBodyCell>
 									))}
-								</tr>
+								</S.TBodyRow>
 							);
 						})}
 					</S.Tbody>

@@ -4,6 +4,7 @@ import { FALLBACK_IMAGE, formatAddress, getTxEndpoint } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
+import { FileDownload } from 'global/FileDownload';
 import { FileMetadata } from 'global/FileMetadata';
 import { useFileTx } from 'hooks/useFileTx';
 
@@ -83,11 +84,14 @@ export default function ImageListItem(props: IProps) {
 	}
 
 	function getTitle() {
-		if (props.data) {
+		if (props.data && txData) {
 			return (
 				<>
-					<S.Name>{props.data.artifactName}</S.Name>
-					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+					<S.NID>
+						<S.Name>{props.data.artifactName}</S.Name>
+						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+					</S.NID>
+					<FileDownload fileUrl={txData.fileUrl} />
 				</>
 			);
 		} else {

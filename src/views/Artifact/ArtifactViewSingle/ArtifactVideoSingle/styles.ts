@@ -194,3 +194,8 @@ export const TimeWrapper = styled.div`
 		color: ${(props) => props.theme.colors.font.primary.alt1} !important;
 	}
 `;
+
+export const Action = styled.div`
+	width: fit-content;
+	margin: 0 0 20px auto;
+`;

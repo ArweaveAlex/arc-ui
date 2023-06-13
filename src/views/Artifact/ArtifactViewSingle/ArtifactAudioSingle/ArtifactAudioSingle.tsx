@@ -3,6 +3,7 @@ import React from 'react';
 import { formatAddress } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
+import { FileDownload } from 'global/FileDownload';
 import { FileMetadata } from 'global/FileMetadata';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
@@ -119,6 +120,9 @@ export default function ArtifactAudioSingle(props: IProps) {
 
 	return props.data && audioUrl ? (
 		<>
+			<S.Action>
+				<FileDownload fileUrl={txData.fileUrl} />
+			</S.Action>
 			<S.Wrapper className={'border-wrapper'}>
 				<S.Audio
 					ref={audioRef}

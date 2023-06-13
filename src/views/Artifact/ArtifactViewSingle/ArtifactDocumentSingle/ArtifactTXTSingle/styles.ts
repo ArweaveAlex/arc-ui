@@ -31,7 +31,10 @@ export const Pre = styled.pre`
 export const Title = styled.div`
 	height: auto;
 	width: 100%;
-	max-width: 800px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
 	margin: 0 0 20px 0;
 	a {
 		line-height: 1.5 !important;
@@ -49,6 +52,8 @@ export const Title = styled.div`
 		}
 	}
 `;
+
+export const NID = styled.div``;
 
 export const Name = styled.p`
 	line-height: 1.5 !important;

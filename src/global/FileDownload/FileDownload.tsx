@@ -1,0 +1,20 @@
+import { Button } from 'components/atoms/Button';
+import { language } from 'helpers/language';
+
+import { IProps } from './types';
+
+export default function FileDownload(props: IProps) {
+	function handleDownload() {
+		if (props.fileUrl) {
+			const link = document.createElement('a');
+			link.href = props.fileUrl;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
+	}
+
+	return (
+		<Button type={'alt1'} label={language.download} handlePress={() => handleDownload()} height={52.5} width={275} />
+	);
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import { formatAddress } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
+import { FileDownload } from 'global/FileDownload';
 import { useFileTx } from 'hooks/useFileTx';
 
 import { IProps } from '../../types';
@@ -28,8 +29,11 @@ export default function ArtifactTXTSingle(props: IProps) {
 		if (props.data) {
 			return (
 				<>
-					<S.Name>{props.data.artifactName}</S.Name>
-					<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+					<S.NID>
+						<S.Name>{props.data.artifactName}</S.Name>
+						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
+					</S.NID>
+					<FileDownload fileUrl={txData.fileUrl} />
 				</>
 			);
 		} else {

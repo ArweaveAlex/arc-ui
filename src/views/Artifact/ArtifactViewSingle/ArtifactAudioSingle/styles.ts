@@ -130,3 +130,15 @@ export const MetadataWrapper = styled.div`
 	max-width: 100%;
 	margin: 0 auto;
 `;
+
+export const Action = styled.div`
+	width: ${STYLING.dimensions.rendererWrapper};
+	max-width: 100%;
+	margin: 0 auto 20px auto;
+	animation: ${open} ${fadeIn2};
+	display: flex;
+	justify-content: flex-end;
+	@media (max-width: ${STYLING.cutoffs.secondary}) {
+		height: auto;
+	}
+`;

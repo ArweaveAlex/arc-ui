@@ -2,8 +2,8 @@ import { ReactSVG } from 'react-svg';
 
 import { formatAddress, formatArtifactType, formatDataSize } from 'arcframework';
 
-import { Button } from 'components/atoms/Button';
 import { Loader } from 'components/atoms/Loader';
+import { FileDownload } from 'global/FileDownload';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useFileTx } from 'hooks/useFileTx';
@@ -15,31 +15,15 @@ import * as S from './styles';
 export default function ArtifactFallbackSingle(props: IProps) {
 	const txData = useFileTx(props.data.rawData);
 
-	function handleDownload() {
-		if (txData.fileUrl) {
-			const link = document.createElement('a');
-			link.href = txData.fileUrl;
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-		}
-	}
-
 	function getTitle() {
-		if (props.data) {
+		if (props.data && txData) {
 			return (
 				<>
 					<S.NID>
 						<S.Name>{props.data.artifactName}</S.Name>
 						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
 					</S.NID>
-					<Button
-						type={'alt1'}
-						label={language.download}
-						handlePress={() => handleDownload()}
-						height={52.5}
-						width={275}
-					/>
+					<FileDownload fileUrl={txData.fileUrl} />
 				</>
 			);
 		} else {

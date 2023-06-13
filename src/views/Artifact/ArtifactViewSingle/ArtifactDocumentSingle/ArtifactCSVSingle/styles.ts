@@ -22,39 +22,40 @@ export const DetailWrapper = styled.div`
 	z-index: 3;
 `;
 
-export const Table = styled.table`
+export const Table = styled.div`
 	width: 100%;
-	border-collapse: separate;
-	border-spacing: 0;
 	border-radius: ${STYLING.dimensions.borderRadius};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	overflow: hidden;
+	overflow: auto;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: ${STYLING.cutoffs.initial};
 	}
+`;
 
-	th,
-	td {
-		padding: 8px;
-		text-align: left;
-		border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
-		border-right: 1px solid ${(props) => props.theme.colors.border.primary};
-	}
+export const THead = styled.div`
+	display: flex;
+`;
 
-	th {
+export const THeadCell = styled.div`
+	height: 30px;
+	min-width: 100px;
+	overflow: hidden;
+	position relative;
+	display: flex;
+	align-items: center;
+	padding: 0 5px;
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
+	p {
+		line-height: 18px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		font-weight: ${(props) => props.theme.typography.weight.medium};
-	}
-
-	tr {
-		> * {
-			&:last-child {
-				border-right: none;
-			}
-		}
 	}
 `;
 
-export const Tbody = styled.tbody`
+export const Tbody = styled.div`
 	> * {
 		&:last-child {
 			td {
@@ -64,10 +65,35 @@ export const Tbody = styled.tbody`
 	}
 `;
 
+export const TBodyRow = styled.div`
+	display: flex;
+`;
+
+export const TBodyCell = styled.div`
+	height: 30px;
+	min-width: 100px;
+	overflow: hidden;
+	position relative;
+	display: flex;
+	align-items: center;
+	padding: 0 5px;
+	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
+	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
+	p {
+		line-height: 18px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+`;
+
 export const Title = styled.div`
 	height: auto;
 	width: 100%;
-	max-width: 800px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
 	margin: 0 0 20px 0;
 	a {
 		line-height: 1.5 !important;
@@ -85,6 +111,8 @@ export const Title = styled.div`
 		}
 	}
 `;
+
+export const NID = styled.div``;
 
 export const Name = styled.p`
 	line-height: 1.5 !important;
