@@ -16,7 +16,6 @@ export default function FileDownload(props: IProps) {
 	// 	}
 	// }
 
-	// TODO: fix download
 	return null;
 
 	// return (
