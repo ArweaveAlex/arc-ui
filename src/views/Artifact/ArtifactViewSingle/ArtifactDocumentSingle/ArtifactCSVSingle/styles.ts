@@ -38,7 +38,7 @@ export const THead = styled.div`
 
 export const THeadCell = styled.div`
 	height: 30px;
-	min-width: 100px;
+	width: 100px;
 	overflow: hidden;
 	position relative;
 	display: flex;
