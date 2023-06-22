@@ -5,11 +5,10 @@ import { useTheme } from 'styled-components';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
-import { FileDownload } from 'global/FileDownload';
-import { FileMetadata } from 'global/FileMetadata';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { StepType } from 'helpers/types';
+import * as windowUtils from 'helpers/window';
 import { useFileTx } from 'hooks/useFileTx';
 import { CloseHandler } from 'wrappers/CloseHandler';
 
@@ -52,6 +51,15 @@ export default function ArtifactEbookSingle(props: IProps) {
 			}
 		})();
 	}, [txData.fileUrl]);
+
+	React.useEffect(() => {
+		if (navigationOpen) {
+			windowUtils.hideDocumentBody();
+			return () => {
+				windowUtils.showDocumentBody();
+			};
+		}
+	}, [navigationOpen]);
 
 	React.useEffect(() => {
 		if (!book || !bookRef.current || !bookTitle) return;
@@ -167,10 +175,10 @@ export default function ArtifactEbookSingle(props: IProps) {
 
 	return (
 		<>
-			<S.Action>
+			{/* <S.Action>
 				<FileDownload fileUrl={txData.fileUrl} />
-			</S.Action>
-			<S.Wrapper className={'border-wrapper'} ref={wrapperRef}>
+			</S.Action> */}
+			<S.Wrapper ref={wrapperRef}>
 				{book ? (
 					<>
 						{navigationOpen && (
@@ -239,7 +247,7 @@ export default function ArtifactEbookSingle(props: IProps) {
 					<Loader />
 				)}
 			</S.Wrapper>
-			<FileMetadata metadata={txData.metadata} />
+			{/* <FileMetadata metadata={txData.metadata} /> */}
 		</>
 	);
 }

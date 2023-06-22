@@ -24,8 +24,6 @@ export const DetailWrapper = styled.div`
 
 export const Table = styled.div`
 	width: 100%;
-	border-radius: ${STYLING.dimensions.borderRadius};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	overflow: auto;
 	@media (max-width: ${STYLING.cutoffs.initial}) {
 		width: ${STYLING.cutoffs.initial};
@@ -38,12 +36,13 @@ export const THead = styled.div`
 
 export const THeadCell = styled.div`
 	height: 30px;
+	min-width: 100px;
 	width: 100px;
 	overflow: hidden;
 	position relative;
 	display: flex;
 	align-items: center;
-	padding: 0 5px;
+	padding: 0 10px;
 	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
 	p {
@@ -72,11 +71,12 @@ export const TBodyRow = styled.div`
 export const TBodyCell = styled.div`
 	height: 30px;
 	min-width: 100px;
+	width: 100px;
 	overflow: hidden;
 	position relative;
 	display: flex;
 	align-items: center;
-	padding: 0 5px;
+	padding: 0 10px;
 	border-bottom: 1px solid ${(props) => props.theme.colors.border.primary};
 	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
 	p {

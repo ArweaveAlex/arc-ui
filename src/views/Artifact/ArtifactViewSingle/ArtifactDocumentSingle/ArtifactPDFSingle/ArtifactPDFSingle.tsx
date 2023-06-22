@@ -31,7 +31,7 @@ export default function ArtifactPDFSingle(props: IProps) {
 						<S.Name>{props.data.artifactName}</S.Name>
 						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
 					</S.NID>
-					<FileDownload fileUrl={txData.fileUrl} />
+					{/* <FileDownload fileUrl={txData.fileUrl} /> */}
 				</>
 			);
 		} else {
@@ -53,7 +53,7 @@ export default function ArtifactPDFSingle(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.Title>{getTitle()}</S.Title>
+			{/* <S.Title>{getTitle()}</S.Title> */}
 			<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
 		</S.Wrapper>
 	);

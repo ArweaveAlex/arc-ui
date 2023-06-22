@@ -5,11 +5,14 @@ import { fadeIn2, open } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
+	min-height: ${STYLING.dimensions.rendererContent};
+	height: ${STYLING.dimensions.rendererContent};
+	max-height: 100vh;
 	width: 100%;
 `;
 
 export const VideoWrapper = styled.div`
-	height: 750px;
+	height: 100%;
 	width: 100%;
 	margin: 0 auto;
 	animation: ${open} ${fadeIn2};
@@ -29,8 +32,6 @@ export const Video = styled.video`
 	bottom: 0;
 	width: 100%;
 	object-fit: cover;
-	border-top-left-radius: ${STYLING.dimensions.borderRadius};
-	border-top-right-radius: ${STYLING.dimensions.borderRadius};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: 500px;
 		position: relative;
@@ -51,8 +52,6 @@ export const DisplayWrapper = styled.div<{ playing: boolean }>`
 	bottom: 0;
 	width: 100%;
 	object-fit: cover;
-	border-top-left-radius: ${STYLING.dimensions.borderRadius};
-	border-top-right-radius: ${STYLING.dimensions.borderRadius};
 	background: ${(props) => props.theme.colors.overlay.alt1};
 	display: ${(props) => (props.playing ? 'none' : 'flex')};
 	justify-content: center;
@@ -79,8 +78,6 @@ export const Content = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background: ${(props) => props.theme.colors.container.alt4.background};
-	border-bottom-left-radius: ${STYLING.dimensions.borderRadius};
-	border-bottom-right-radius: ${STYLING.dimensions.borderRadius};
 	@media (max-width: ${STYLING.cutoffs.tablet}) {
 		height: 200px;
 		position: relative;

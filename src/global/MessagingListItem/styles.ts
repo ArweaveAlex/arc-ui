@@ -257,8 +257,8 @@ export const HeaderWrapper = styled.div`
 	width: 100%;
 	position: relative;
 	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	// border: 1px solid ${(props) => props.theme.colors.border.primary};
+	// border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	padding: 20px 20px 15px 20px;
 	margin: 0 0 20px 0;
 	a {
@@ -362,7 +362,7 @@ export const ChildAssetContainer = styled.div`
 `;
 
 export const MediaWrapper = styled.div`
-	width: ${STYLING.dimensions.messagingContent};
+	width: ${STYLING.dimensions.rendererContent};
 	max-width: 100%;
 	margin: 0 auto;
 	position: relative;
@@ -376,7 +376,7 @@ export const MediaElement = styled.div`
 `;
 
 export const MediaContent = styled.div`
-	height: ${STYLING.dimensions.messagingContent};
+	height: ${STYLING.dimensions.rendererContent};
 	width: 100%;
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.alt5.background};
@@ -384,7 +384,7 @@ export const MediaContent = styled.div`
 `;
 
 export const ImageContent = styled(MediaContent)<{ image: string }>`
-	height: ${STYLING.dimensions.messagingContent};
+	height: ${STYLING.dimensions.rendererContent};
 	background-image: ${(props) => `url("${props.image}")`};
 	background-size: contain;
 	background-position: center center;

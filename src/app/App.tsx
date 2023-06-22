@@ -3,6 +3,7 @@ import React from 'react';
 import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
 import { Artifact } from 'views/Artifact';
+
 export function App() {
 	const query = parseQuery(window.location.search);
 
@@ -10,7 +11,7 @@ export function App() {
 		function sendHeightToParent() {
 			window.parent.postMessage(
 				{
-					frameHeight: document.body.scrollHeight + 100,
+					frameHeight: document.body.scrollHeight,
 					frameId: DOM.renderer,
 				},
 				'*'
@@ -32,6 +33,33 @@ export function App() {
 
 		return () => {
 			mutationObserver.disconnect();
+		};
+	}, []);
+
+	React.useEffect(() => {
+		function handleMessage(event: any) {
+			const mutationObserver = new MutationObserver(() => {
+				if (event.data.type === 'setHeight' && event.data.height && document.getElementById(DOM.ids.imageIc)) {
+					document.getElementById(DOM.ids.imageIc).style.height = event.data.height;
+				}
+			});
+
+			mutationObserver.observe(document.body, {
+				childList: true,
+				subtree: true,
+				attributes: false,
+				characterData: false,
+			});
+
+			return () => {
+				mutationObserver.disconnect();
+			};
+		}
+
+		window.addEventListener('message', handleMessage);
+
+		return () => {
+			window.removeEventListener('message', handleMessage);
 		};
 	}, []);
 

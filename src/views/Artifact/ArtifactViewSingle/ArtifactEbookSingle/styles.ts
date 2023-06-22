@@ -4,10 +4,13 @@ import { fadeIn2, open, openLeft } from 'helpers/animations';
 import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
-	height: 665px;
+	min-height: ${STYLING.dimensions.rendererContent};
+	height: ${STYLING.dimensions.rendererContent};
+	max-height: 100vh;
 	width: 100%;
 	position: relative;
 	animation: ${open} ${fadeIn2};
+	background: ${(props) => props.theme.colors.container.primary.background};
 `;
 
 export const ViewerWrapper = styled.div`
@@ -41,6 +44,7 @@ export const Viewer = styled.div`
 export function epubjsGlobalStyles(theme: DefaultTheme) {
 	return `
         body {
+			background: ${theme.colors.transparent} !important;
             color: ${theme.colors.font.primary.alt8} !important;
             font-family: ${theme.typography.family.primary} !important;
             line-height: 1.5 !important;
@@ -129,11 +133,11 @@ export const PrevAction = styled(NextAction)`
 
 export const NWrapper = styled.div`
 	height: 100%;
+	max-height: 100vh;
 	width: 100%;
 	position: absolute;
 	z-index: 2;
 	background: ${(props) => props.theme.colors.overlay.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	backdrop-filter: blur(2px);
 `;
 
@@ -143,8 +147,6 @@ export const NContent = styled.div`
 	overflow: hidden;
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-right: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-top-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
-	border-bottom-left-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	animation: ${openLeft} 0.2s ease-out forwards;
 `;
 

@@ -28,9 +28,6 @@ export const ContentLine = styled.div`
 	width: 100%;
 	margin: 0 0 15px 0;
 	padding: 17.5px;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;
 `;
 

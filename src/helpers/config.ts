@@ -100,4 +100,7 @@ export const ARTIFACT_TYPES = {
 export const DOM = {
 	modal: 'modal',
 	renderer: 'renderer',
+	ids: {
+		imageIc: 'image-ic-wrapper',
+	},
 };

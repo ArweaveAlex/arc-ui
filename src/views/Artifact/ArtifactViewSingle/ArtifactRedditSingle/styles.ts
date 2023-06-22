@@ -23,9 +23,7 @@ export const ListWrapper = styled.div`
 	width: ${STYLING.dimensions.rendererWrapper};
 	max-width: 100%;
 	margin: 0 auto;
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	background: ${(props) => props.theme.colors.transparent};
 	overflow: auto;
 	scrollbar-width: none;
 	::-webkit-scrollbar {
@@ -183,7 +181,6 @@ export const CommentBody = styled.p`
 export const LoadingContainer = styled.div`
 	height: 200px;
 	width: 100%;
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	background: ${(props) => props.theme.colors.container.primary.background};
 	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
 	position: relative;

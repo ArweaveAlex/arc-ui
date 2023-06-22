@@ -8,9 +8,7 @@ export const Wrapper = styled.div`
 	width: 100%;
 	position: relative;
 	padding: 20px;
-	border: 1px solid ${(props) => props.theme.colors.border.primary};
-	background: ${(props) => props.theme.colors.container.primary.background};
-	border-radius: ${STYLING.dimensions.borderRadiusWrapper};
+	background: ${(props) => props.theme.colors.transparent};
 	animation: ${open} ${fadeIn2};
 `;
 

@@ -4,8 +4,6 @@ import { formatAddress } from 'arcframework';
 
 import { IconButton } from 'components/atoms/IconButton';
 import { Loader } from 'components/atoms/Loader';
-import { FileDownload } from 'global/FileDownload';
-import { FileMetadata } from 'global/FileMetadata';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useFileTx } from 'hooks/useFileTx';
@@ -102,7 +100,7 @@ function Video(props: IProps & { type: string }) {
 	}, [isDurationAvailable, videoRef.current, formatTime]);
 
 	return props.data && txData.fileUrl ? (
-		<S.VideoWrapper className={'border-wrapper'}>
+		<S.VideoWrapper>
 			<S.Video ref={videoRef} onLoadedMetadata={handleLoadedMetadata} onTimeUpdate={updateTime}>
 				<S.VideoSource type={props.type} src={txData.fileUrl} />
 			</S.Video>
@@ -159,8 +157,6 @@ function Video(props: IProps & { type: string }) {
 }
 
 export default function ArtifactVideoSingle(props: IProps) {
-	const txData = useFileTx(props.data.rawData);
-
 	function getDetailData() {
 		if (!props.data) {
 			return <Loader />;
@@ -177,11 +173,11 @@ export default function ArtifactVideoSingle(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.Action>
+			{/* <S.Action>
 				<FileDownload fileUrl={txData.fileUrl} />
-			</S.Action>
+			</S.Action> */}
 			{getDetailData()}
-			<FileMetadata metadata={txData.metadata} />
+			{/* <FileMetadata metadata={txData.metadata} /> */}
 		</S.Wrapper>
 	);
 }

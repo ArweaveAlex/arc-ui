@@ -91,7 +91,7 @@ export const Alt2 = styled(Primary)`
 `;
 
 export const Alt3 = styled(Alt1)`
-	background: ${(props) => props.theme.colors.container.alt3.background};
+	background: ${(props) => props.theme.colors.container.primary.background};
 	border: 1px solid ${(props) => props.theme.colors.border.primary};
 	&:hover {
 		background: ${(props) => props.theme.colors.button.alt1.background};
@@ -101,7 +101,7 @@ export const Alt3 = styled(Alt1)`
 		}
 	}
 	svg {
-		fill: ${(props) => props.theme.colors.icon.inactive};
+		fill: ${(props) => props.theme.colors.icon.alt1.fill};
 	}
 `;
 

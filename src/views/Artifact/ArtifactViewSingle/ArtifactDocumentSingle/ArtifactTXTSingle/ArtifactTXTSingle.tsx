@@ -33,7 +33,7 @@ export default function ArtifactTXTSingle(props: IProps) {
 						<S.Name>{props.data.artifactName}</S.Name>
 						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
 					</S.NID>
-					<FileDownload fileUrl={txData.fileUrl} />
+					{/* <FileDownload fileUrl={txData.fileUrl} /> */}
 				</>
 			);
 		} else {
@@ -55,8 +55,8 @@ export default function ArtifactTXTSingle(props: IProps) {
 
 	return (
 		<S.Wrapper>
-			<S.Title>{getTitle()}</S.Title>
-			<S.DetailWrapper className={'border-wrapper'}>{getDetailData()}</S.DetailWrapper>
+			{/* <S.Title>{getTitle()}</S.Title> */}
+			<S.DetailWrapper>{getDetailData()}</S.DetailWrapper>
 		</S.Wrapper>
 	);
 }

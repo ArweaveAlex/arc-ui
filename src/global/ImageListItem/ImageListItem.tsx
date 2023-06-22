@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { FALLBACK_IMAGE, formatAddress, getTxEndpoint } from 'arcframework';
+import { FALLBACK_IMAGE, getTxEndpoint } from 'arcframework';
 
 import { Loader } from 'components/atoms/Loader';
 import { Modal } from 'components/molecules/Modal';
-import { FileDownload } from 'global/FileDownload';
-import { FileMetadata } from 'global/FileMetadata';
 import { useFileTx } from 'hooks/useFileTx';
 
 import * as S from './styles';
@@ -17,18 +15,6 @@ export default function ImageListItem(props: IProps) {
 	const [imageUrl, setImageUrl] = React.useState<string | null>(null);
 	const [imageLoaded, setImageLoaded] = React.useState<boolean>(false);
 	const [imageZoomed, setImageZoomed] = React.useState(false);
-
-	const handleFullscreenChange = () => {
-		const fullscreenElement =
-			document.fullscreenElement ||
-			(document as any).webkitFullscreenElement ||
-			(document as any).mozFullScreenElement ||
-			(document as any).msFullscreenElement;
-
-		if (!fullscreenElement) {
-			setImageZoomed(false);
-		}
-	};
 
 	React.useEffect(() => {
 		document.addEventListener('fullscreenchange', handleFullscreenChange);
@@ -52,6 +38,18 @@ export default function ImageListItem(props: IProps) {
 			}
 		})();
 	}, [txData.fileUrl]);
+
+	const handleFullscreenChange = () => {
+		const fullscreenElement =
+			document.fullscreenElement ||
+			(document as any).webkitFullscreenElement ||
+			(document as any).mozFullScreenElement ||
+			(document as any).msFullscreenElement;
+
+		if (!fullscreenElement) {
+			setImageZoomed(false);
+		}
+	};
 
 	function handleImageLoaded() {
 		setImageLoaded(true);
@@ -83,26 +81,6 @@ export default function ImageListItem(props: IProps) {
 		}
 	}
 
-	function getTitle() {
-		if (props.data && txData) {
-			return (
-				<>
-					<S.NID>
-						<S.Name>{props.data.artifactName}</S.Name>
-						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
-					</S.NID>
-					<FileDownload fileUrl={txData.fileUrl} />
-				</>
-			);
-		} else {
-			return (
-				<S.TP>
-					<Loader placeholder />
-				</S.TP>
-			);
-		}
-	}
-
 	function getImage() {
 		if (!imageZoomed) {
 			return (
@@ -122,14 +100,10 @@ export default function ImageListItem(props: IProps) {
 	}
 
 	return (
-		<S.ICWrapper>
+		<S.ICWrapper id={'image-ic-wrapper'}>
 			<S.C1>
-				<S.C1Content>
-					<S.Title>{getTitle()}</S.Title>
-					{getImage()}
-				</S.C1Content>
+				<S.C1Content>{getImage()}</S.C1Content>
 			</S.C1>
-			<FileMetadata metadata={txData.metadata} />
 		</S.ICWrapper>
 	);
 }

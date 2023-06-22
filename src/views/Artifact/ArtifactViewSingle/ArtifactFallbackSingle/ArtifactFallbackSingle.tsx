@@ -1,9 +1,7 @@
 import { ReactSVG } from 'react-svg';
 
-import { formatAddress, formatArtifactType, formatDataSize } from 'arcframework';
+import { formatArtifactType, formatDataSize } from 'arcframework';
 
-import { Loader } from 'components/atoms/Loader';
-import { FileDownload } from 'global/FileDownload';
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
 import { useFileTx } from 'hooks/useFileTx';
@@ -15,29 +13,9 @@ import * as S from './styles';
 export default function ArtifactFallbackSingle(props: IProps) {
 	const txData = useFileTx(props.data.rawData);
 
-	function getTitle() {
-		if (props.data && txData) {
-			return (
-				<>
-					<S.NID>
-						<S.Name>{props.data.artifactName}</S.Name>
-						<S.ID>{formatAddress(props.data.artifactId, true)}</S.ID>
-					</S.NID>
-					<FileDownload fileUrl={txData.fileUrl} />
-				</>
-			);
-		} else {
-			return (
-				<S.TP>
-					<Loader placeholder />
-				</S.TP>
-			);
-		}
-	}
-
 	return props.data && txData.fileUrl ? (
 		<>
-			<S.Title>{getTitle()}</S.Title>
+			{/* <S.Title>{getTitle()}</S.Title> */}
 			<S.Wrapper>
 				<S.Content>
 					<S.ContentLine>
