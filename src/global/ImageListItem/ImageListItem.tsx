@@ -34,7 +34,7 @@ export default function ImageListItem(props: IProps) {
 		(async function () {
 			if (txData.fileUrl) {
 				const imageResponse = await fetch(txData.fileUrl);
-				setImageUrl(imageResponse.status === 200 ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
+				setImageUrl(imageResponse.status ? imageResponse.url : getTxEndpoint(FALLBACK_IMAGE));
 			}
 		})();
 	}, [txData.fileUrl]);
