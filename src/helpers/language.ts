@@ -252,7 +252,6 @@ export const language = {
 	upvoted: `Upvoted`,
 	urlCopied: `URL Copied!`,
 	view: `View`,
-	account: `Account`,
 	viewOnArweave: `View on Arweave`,
 	viewOnPermafacts: `View on Permafacts`,
 	viewPool: `View Pool`,
