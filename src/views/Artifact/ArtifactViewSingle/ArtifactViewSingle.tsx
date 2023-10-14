@@ -8,6 +8,7 @@ import { ArtifactEbookSingle } from './ArtifactEbookSingle';
 import { ArtifactFallbackSingle } from './ArtifactFallbackSingle';
 import { ArtifactImageSingle } from './ArtifactImageSingle';
 import { ArtifactMessagingSingle } from './ArtifactMessagingSingle';
+import { ArtifactNewsSingle } from './ArtifactNewsSingle';
 import { ArtifactNostrSingle } from './ArtifactNostrSingle';
 import { ArtifactRedditSingle } from './ArtifactRedditSingle';
 import { ArtifactVideoSingle } from './ArtifactVideoSingle';
@@ -37,6 +38,8 @@ export default function ArtifactViewSingle(props: IProps) {
 					return <ArtifactVideoSingle data={props.data} />;
 				case ArtifactEnum.Webpage:
 					return <ArtifactWebpageSingle data={props.data} />;
+				case ArtifactEnum.NewsArticle:
+					return <ArtifactNewsSingle data={props.data} />;
 				default:
 					return <ArtifactFallbackSingle data={props.data} />;
 			}

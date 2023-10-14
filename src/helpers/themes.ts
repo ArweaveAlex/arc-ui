@@ -285,6 +285,8 @@ export const defaultTheme: DefaultTheme = {
 		size: {
 			h1: 'clamp(38px, 4.5vw, 62px)',
 			h2: 'clamp(32px, 3.75vw, 44px)',
+			lg: '18px',
+			xLg: '28px',
 			base: '16px',
 			small: '15px',
 			xSmall: '14px',

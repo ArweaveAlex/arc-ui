@@ -74,6 +74,7 @@ export const language = {
 		title: `Title`,
 	},
 	arTokens: `$AR`,
+	author: `Author`,
 	availableBalance: `Available Balance`,
 	banner: {
 		header1: `Preserving`,
@@ -214,6 +215,7 @@ export const language = {
 		twitter: `Twitter`,
 	},
 	sortBy: `Sort By`,
+	source: `Source`,
 	stamp: `STAMP`,
 	stamps: `Stamps`,
 	stampsVouched: `Vouched Stamps`,

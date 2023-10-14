@@ -17,7 +17,7 @@
 		"check-packages": "node src/workers/check-packages.mjs"
 	},
 	"dependencies": {
-		"arcframework": "1.1.93",
+		"arcframework": "1.2.18",
 		"epubjs": "^0.3.93",
 		"html-react-parser": "^3.0.4",
 		"react": "^18.2.0",

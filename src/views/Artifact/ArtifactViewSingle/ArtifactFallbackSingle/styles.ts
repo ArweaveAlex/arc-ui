@@ -15,8 +15,8 @@ export const Content = styled.div`
 	height: 100%;
 	width: 100%;
 	> * {
-		&:last-child {
-			margin: 0;
+		&:not(:last-child) {
+			margin: 0 0 20px 0;
 		}
 	}
 	@media (max-width: ${STYLING.cutoffs.initial}) {
@@ -26,8 +26,6 @@ export const Content = styled.div`
 
 export const ContentLine = styled.div`
 	width: 100%;
-	margin: 0 0 15px 0;
-	padding: 17.5px;
 	position: relative;
 `;
 

@@ -1,21 +1,17 @@
 import { ReactSVG } from 'react-svg';
 
-import { formatArtifactType, formatDataSize } from 'arcframework';
+import { formatArtifactType, formatDataSize, getTxEndpoint } from 'arcframework';
 
 import { ASSETS } from 'helpers/config';
 import { language } from 'helpers/language';
-import { useFileTx } from 'hooks/useFileTx';
 
 import { IProps } from '../types';
 
 import * as S from './styles';
 
 export default function ArtifactFallbackSingle(props: IProps) {
-	const txData = useFileTx(props.data.rawData);
-
-	return props.data && txData.fileUrl ? (
+	return props.data ? (
 		<>
-			{/* <S.Title>{getTitle()}</S.Title> */}
 			<S.Wrapper>
 				<S.Content>
 					<S.ContentLine>
@@ -40,8 +36,8 @@ export default function ArtifactFallbackSingle(props: IProps) {
 							<S.LinkWrapperAlt>
 								<S.DataLine>
 									<ReactSVG src={ASSETS.logoAlt2} />
-									<S.DataUrl target={'_blank'} rel={'noreferrer'} href={txData.fileUrl!}>
-										{txData.fileUrl}
+									<S.DataUrl target={'_blank'} rel={'noreferrer'} href={getTxEndpoint(props.data.artifactId)}>
+										{getTxEndpoint(props.data.artifactId)}
 									</S.DataUrl>
 								</S.DataLine>
 							</S.LinkWrapperAlt>
