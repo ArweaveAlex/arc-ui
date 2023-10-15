@@ -36,7 +36,7 @@ export default function ArtifactNewsSingle(props: IProps) {
 			<S.HWrapper>
 				<S.HWrapper>
 					{jsonData.description && (
-						<S.HDescription>
+						<S.HDescription className={'border-wrapper'}>
 							<span>{jsonData.description}</span>
 						</S.HDescription>
 					)}
