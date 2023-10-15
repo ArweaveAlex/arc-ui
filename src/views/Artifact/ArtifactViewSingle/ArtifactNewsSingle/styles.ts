@@ -54,16 +54,26 @@ export const HLine = styled.div`
 export const AContent = styled.div`
 	max-width: 800px;
 	margin: 20px 0 0 0;
-	p {
+	font-family: ${(props) => props.theme.typography.family.primary};
+	font-size: ${(props) => props.theme.typography.size.lg};
+	color: ${(props) => props.theme.colors.font.primary.alt8};
+	font-weight: ${(props) => props.theme.typography.weight.regular};
+	line-height: 1.5;
+	a,
+	p,
+	span {
 		font-family: ${(props) => props.theme.typography.family.primary};
 		font-size: ${(props) => props.theme.typography.size.lg};
+	}
+	p {
 		color: ${(props) => props.theme.colors.font.primary.alt8};
 		font-weight: ${(props) => props.theme.typography.weight.regular};
 		line-height: 1.5;
-		br {
-			content: ' ';
-			display: block;
-			margin: 0 0 20px 0;
-		}
+		margin: 0 0 20px 0;
+	}
+	br {
+		content: ' ';
+		display: block;
+		margin: 0 0 20px 0;
 	}
 `;

@@ -120,8 +120,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${(props) => props.theme.colors.font.primary.active.base};
-    text-decoration: none;
+    color: ${(props) => props.theme.colors.font.primary.active.base} !important;
+    text-decoration: none !important;
 
     &:hover {
       text-decoration: underline;

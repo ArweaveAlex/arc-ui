@@ -58,9 +58,7 @@ export default function ArtifactNewsSingle(props: IProps) {
 						)}
 					</S.HData>
 				</S.HWrapper>
-				<S.AContent>
-					<p>{parse(jsonData.content)}</p>
-				</S.AContent>
+				<S.AContent>{parse(jsonData.content)}</S.AContent>
 			</S.HWrapper>
 		</S.Wrapper>
 	) : null;
