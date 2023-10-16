@@ -29,8 +29,6 @@ export default function ArtifactNewsSingle(props: IProps) {
 		}
 	}
 
-	console.log(jsonData);
-
 	return jsonData ? (
 		<S.Wrapper>
 			<S.HWrapper>
@@ -40,7 +38,7 @@ export default function ArtifactNewsSingle(props: IProps) {
 							<span>{jsonData.description}</span>
 						</S.HDescription>
 					)}
-					<img src={getImage()} />
+					<img className={'border-wrapper'} src={getImage()} />
 					<S.HData>
 						{jsonData.author && (
 							<S.HLine>

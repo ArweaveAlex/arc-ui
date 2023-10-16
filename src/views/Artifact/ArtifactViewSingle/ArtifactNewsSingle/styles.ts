@@ -13,7 +13,7 @@ export const HWrapper = styled.div`
 	img {
 		width: 100%;
 		border-radius: ${STYLING.dimensions.borderRadius};
-		margin: 0 0 20px 0;
+		margin: 10px 0 20px 0;
 	}
 `;
 
@@ -54,26 +54,55 @@ export const HLine = styled.div`
 export const AContent = styled.div`
 	max-width: 800px;
 	margin: 20px 0 0 0;
-	font-family: ${(props) => props.theme.typography.family.primary};
-	font-size: ${(props) => props.theme.typography.size.lg};
-	color: ${(props) => props.theme.colors.font.primary.alt8};
-	font-weight: ${(props) => props.theme.typography.weight.regular};
+	font-family: ${(props) => props.theme.typography.family.primary} !important;
+	font-size: ${(props) => props.theme.typography.size.base} !important;
+	color: ${(props) => props.theme.colors.font.primary.alt8} !important;
+	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 	line-height: 1.5;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-size: ${(props) => props.theme.typography.size.xLg} !important;
+		margin: 40px 0 10px 0;
+	}
 	a,
 	p,
+	li,
+	b,
+	strong,
 	span {
-		font-family: ${(props) => props.theme.typography.family.primary};
-		font-size: ${(props) => props.theme.typography.size.lg};
+		font-family: ${(props) => props.theme.typography.family.primary} !important;
+		font-size: ${(props) => props.theme.typography.size.base} !important;
 	}
 	p {
-		color: ${(props) => props.theme.colors.font.primary.alt8};
-		font-weight: ${(props) => props.theme.typography.weight.regular};
-		line-height: 1.5;
+		color: ${(props) => props.theme.colors.font.primary.alt8} !important;
+		font-weight: ${(props) => props.theme.typography.weight.regular} !important;
+		line-height: 1.5 !important;
 		margin: 0 0 20px 0;
 	}
 	br {
 		content: ' ';
 		display: block;
 		margin: 0 0 20px 0;
+	}
+	figure,
+	img {
+		display: none !important;
+	}
+	li {
+		margin: 20px 0 !important;
+		li {
+			margin: 0 !important;
+		}
+	}
+	td {
+		width: 300px;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 `;
