@@ -38,7 +38,7 @@ export default function ArtifactNewsSingle(props: IProps) {
 							<span>{jsonData.description}</span>
 						</S.HDescription>
 					)}
-					<img className={'border-wrapper'} src={getImage()} />
+					{getImage() !== null && <img className={'border-wrapper'} src={getImage()} />}
 					<S.HData>
 						{jsonData.author && (
 							<S.HLine>
