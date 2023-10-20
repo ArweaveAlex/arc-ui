@@ -30,6 +30,7 @@ export const HDescription = styled.div`
 `;
 
 export const HData = styled.div`
+	width: fit-content;
 	> * {
 		&:not(:last-child) {
 			margin: 0 0 10px 0;
@@ -40,22 +41,31 @@ export const HData = styled.div`
 export const HLine = styled.div`
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px 0;
 	p,
 	span {
 		font-family: ${(props) => props.theme.typography.family.primary};
 		font-size: ${(props) => props.theme.typography.size.small};
 		color: ${(props) => props.theme.colors.font.primary.alt1};
+		line-height: 1.5;
 	}
 	p {
 		font-weight: ${(props) => props.theme.typography.weight.medium};
 	}
 `;
 
+export const HDate = styled(HLine)`
+	margin: 15px 0 0 0;
+	padding: 15px 0 0 0;
+	border-top: 1px solid ${(props) => props.theme.colors.border.primary};
+`;
+
 export const AContent = styled.div`
 	max-width: 800px;
 	margin: 20px 0 0 0;
-	font-family: ${(props) => props.theme.typography.family.primary} !important;
-	font-size: ${(props) => props.theme.typography.size.base} !important;
+	font-family: ${(props) => props.theme.typography.family.alt1} !important;
+	font-size: ${(props) => props.theme.typography.size.lg} !important;
 	color: ${(props) => props.theme.colors.font.primary.alt8} !important;
 	font-weight: ${(props) => props.theme.typography.weight.regular} !important;
 	line-height: 1.5;

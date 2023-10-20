@@ -29,9 +29,17 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  html {
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+
   body {
     line-height: 1;
     background: ${(props) => props.theme.colors.view.background};
+    overflow: auto;
     scrollbar-width: none;
     ::-webkit-scrollbar {
       width: 0px;

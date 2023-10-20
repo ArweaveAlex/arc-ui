@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 
 import { getTxEndpoint } from 'arcframework';
 
+import { DOM } from 'helpers/config';
 import { language } from 'helpers/language';
 
 import { IProps } from '../types';
@@ -11,12 +12,29 @@ import * as S from './styles';
 
 export default function ArtifactNewsSingle(props: IProps) {
 	const [jsonData, setJsonData] = React.useState<any>(null);
+	const [imageLoaded, setImageLoaded] = React.useState<boolean>(false);
+
+	const imageRef = React.useRef<any>(null);
 
 	React.useEffect(() => {
 		if (props.data && props.data.rawData) {
 			setJsonData(JSON.parse(props.data.rawData));
 		}
 	}, [props.data]);
+
+	React.useEffect(() => {
+		if (imageLoaded) {
+			if (imageRef && imageRef.current) {
+				window.parent.postMessage(
+					{
+						frameHeight: document.body.scrollHeight + 40,
+						frameId: DOM.renderer,
+					},
+					'*'
+				);
+			}
+		}
+	}, [imageLoaded]);
 
 	function getImage() {
 		if (props.data && props.data.mediaIds) {
@@ -38,7 +56,9 @@ export default function ArtifactNewsSingle(props: IProps) {
 							<span>{jsonData.description}</span>
 						</S.HDescription>
 					)}
-					{getImage() !== null && <img className={'border-wrapper'} src={getImage()} />}
+					{getImage() !== null && (
+						<img ref={imageRef} className={'border-wrapper'} src={getImage()} onLoad={() => setImageLoaded(true)} />
+					)}
 					<S.HData>
 						{jsonData.author && (
 							<S.HLine>
@@ -53,6 +73,24 @@ export default function ArtifactNewsSingle(props: IProps) {
 								&nbsp;
 								<span>{jsonData.source.name}</span>
 							</S.HLine>
+						)}
+						{jsonData.publishedAt && (
+							<S.HDate>
+								<p>{`${language.datePublished}:`}</p>
+								&nbsp;
+								<span>
+									{new Date(jsonData.publishedAt).toLocaleDateString('en-US', {
+										weekday: 'long',
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric',
+										hour: '2-digit',
+										minute: '2-digit',
+										second: '2-digit',
+										timeZoneName: 'short',
+									})}
+								</span>
+							</S.HDate>
 						)}
 					</S.HData>
 				</S.HWrapper>

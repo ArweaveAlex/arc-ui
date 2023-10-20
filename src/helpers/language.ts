@@ -117,6 +117,7 @@ export const language = {
 	createFirstCollection: `Create your first collection`,
 	createdOn: `Created on`,
 	dateCreated: `Date Created`,
+	datePublished: `Date Published`,
 	default: `Default`,
 	details: `Details`,
 	description: `Description`,
