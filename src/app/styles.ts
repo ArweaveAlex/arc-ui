@@ -151,7 +151,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     &:disabled {
-      cursor: not-allowed;
+      cursor: default;
     }
   }
 
@@ -170,7 +170,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 10px;
     &:disabled {
-      cursor: not-allowed;
+      cursor: default;
     }
   }
 
