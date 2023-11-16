@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 	width: 100%;
 	max-width: 1024px;
 	animation: ${open} ${fadeIn2};
+	padding: 20px;
 `;
 
 export const HWrapper = styled.div`
@@ -19,11 +20,10 @@ export const HWrapper = styled.div`
 
 export const HDescription = styled.div`
 	margin: 0 0 20px 0;
-	padding: 8.5px 15px 11.5px 15px;
 	span {
 		font-family: ${(props) => props.theme.typography.family.alt1};
 		font-size: ${(props) => props.theme.typography.size.xLg};
-		color: ${(props) => props.theme.colors.font.primary.active.base};
+		color: ${(props) => props.theme.colors.font.primary.alt1};
 		font-weight: ${(props) => props.theme.typography.weight.bold};
 		line-height: 1.5;
 	}
