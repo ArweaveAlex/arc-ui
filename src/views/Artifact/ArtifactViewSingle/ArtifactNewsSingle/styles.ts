@@ -83,7 +83,7 @@ export const AContent = styled.div`
 	b,
 	strong,
 	span {
-		font-family: ${(props) => props.theme.typography.family.primary} !important;
+		font-family: ${(props) => props.theme.typography.family.alt1} !important;
 		font-size: ${(props) => props.theme.typography.size.base} !important;
 	}
 	p {
