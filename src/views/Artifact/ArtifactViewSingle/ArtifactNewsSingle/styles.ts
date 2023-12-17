@@ -5,7 +5,6 @@ import { STYLING } from 'helpers/styling';
 
 export const Wrapper = styled.div`
 	width: 100%;
-	max-width: 1024px;
 	animation: ${open} ${fadeIn2};
 	padding: 20px;
 `;
@@ -23,7 +22,7 @@ export const HDescription = styled.div`
 	span {
 		font-family: ${(props) => props.theme.typography.family.alt1};
 		font-size: ${(props) => props.theme.typography.size.xLg};
-		color: ${(props) => props.theme.colors.font.primary.alt1};
+		color: ${(props) => props.theme.colors.font.primary.active.base};
 		font-weight: ${(props) => props.theme.typography.weight.bold};
 		line-height: 1.5;
 	}
@@ -62,7 +61,6 @@ export const HDate = styled(HLine)`
 `;
 
 export const AContent = styled.div`
-	max-width: 800px;
 	margin: 20px 0 0 0;
 	font-family: ${(props) => props.theme.typography.family.alt1} !important;
 	font-size: ${(props) => props.theme.typography.size.lg} !important;
