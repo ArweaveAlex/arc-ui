@@ -58,7 +58,7 @@ export const language = {
 	},
 	actions: `Actions`,
 	activePools: `Active Pools`,
-	addtoBookmarks: `Add to Bookmarks`,
+	addToBookmarks: `Add to Bookmarks`,
 	amountExceedsBalance: `Amount exceeds Balance`,
 	artifact: `Artifact`,
 	artifactCount: `Artifact Count`,
