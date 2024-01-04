@@ -113,4 +113,7 @@ export const AContent = styled.div`
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
+	svg {
+		display: none !important;
+	}
 `;
